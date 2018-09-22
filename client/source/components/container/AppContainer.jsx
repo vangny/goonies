@@ -63,20 +63,18 @@ class AppContainer extends React.Component {
     localStorage.clear();
   }
 
-
-
   render() {
     const { loggedIn } = this.state;
     return (
       <div className="header">
-        { 
+        {
           loggedIn ? (
           <nav>
-            <button type="button" id="dash" onClick={()=> this.changeView('dash')}>Dashboard</button>
-            <button type="button" id="journals" onClick={() => this.changeView('journal')}>Journals</button>
-            <button type="button" id="trailInfo" onClick={() => this.changeView('trails')}>TrailInfo</button>
-            <button type="button" id="profile" onClick={() => this.changeView('profile')}>UserProfile</button>
-            <button type="button" id="logOut" onClick={this.logOut}>Log Out</button>
+            <span type="button" id="dash" onClick={() => this.changeView('dash')}>Dashboard</span>
+            <span type="button" id="journals" onClick={() => this.changeView('journal')}>Journals</span>
+            <span type="button" id="trailInfo" onClick={() => this.changeView('trails')}>TrailInfo</span>
+            <span type="button" id="profile" onClick={() => this.changeView('profile')}>Profile</span>
+            <span type="button" id="logOut" onClick={this.logOut}>Log Out</span>
           </nav>) : null
         }
         <h1 className="logo">Backpacker</h1>

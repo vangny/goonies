@@ -1,6 +1,6 @@
 import React from 'react';
 // import { Link, Router } from '@reach/router';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import GoogleMapsContainer from './renderMap';
 import Journals from './Journals';
 // import routes from '../../SampleData';
@@ -24,7 +24,6 @@ class MapYourRoute extends React.Component {
     // const { id } = this.props;
     return (
       <div>
-        <button type="button" onClick={logOut}>Log Out</button>
         <h3>Your Map</h3>
         <div>
           <GoogleMapsContainer />
@@ -47,7 +46,7 @@ class MapYourRoute extends React.Component {
   }
 }
 
-MapYourRoute.propTypes = {
-  logOut: PropTypes.func.isRequired,
-};
+// MapYourRoute.propTypes = {
+//   logOut: PropTypes.func.isRequired,
+// };
 export default MapYourRoute;

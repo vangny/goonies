@@ -1,21 +1,30 @@
-const routes = [
-  {
-    _id: 1,
-    routeName: 'Upper Yosemite Falls',
-    date: '2018-06-20',
-    distanceInMiles: 10.9,
-    timeToCompleteInHours: 20520000,
-    averageSpeedMPH: 10.9 / (20520000 / 3600000),
-  },
-  {
-    _id: 2,
-    routeName: 'Half Dome Yosemite Falls',
-    date: '2018-06-21',
-    distanceInMiles: 20.5,
-    timeToCompleteInHours: 44280000,
-    averageSpeedMPH: 20.5 / 12.3,
-  },
-];
+const routes = [{
+  name: 'Half Dome',
+  type: 'Featured Hike',
+  difficulty: 'black',
+  location: 'Yosemite Valley, California',
+  distance: 14.7,
+  start: 'June 10, 10:05 AM',
+  end: 'June 10, 3:35 PM',
+},
+{
+  name: 'Devil\'s Drop',
+  type: 'Featured Hike',
+  difficulty: 'black',
+  location: 'Yosemite Valley, California',
+  distance: 15.2,
+  start: 'June 5, 8:05 AM',
+  end: 'June 5, 2:21 PM',
+},
+{
+  name: 'Stairway To Heaven',
+  type: 'Featured Hike',
+  difficulty: 'black',
+  location: 'Yosemite Valley, California',
+  distance: 12,
+  start: 'May 2, 9:30 AM',
+  end: 'May 2, 1:56 PM',
+}];
 
 export default routes;
 
