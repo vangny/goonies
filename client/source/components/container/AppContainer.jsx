@@ -17,11 +17,8 @@ class AppContainer extends React.Component {
     };
     this.transferUserInfo = this.transferUserInfo.bind(this);
     this.logOut = this.logOut.bind(this);
-<<<<<<< HEAD
     this.changeView = this.changeView.bind(this);
-=======
     this.viewHandler = this.viewHandler.bind(this);
->>>>>>> 08758215f41f474f5d4336e5054c5706b8be4419
   }
 
   componentDidMount() {
