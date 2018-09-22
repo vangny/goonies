@@ -1,7 +1,6 @@
 import React from 'react';
 // import { Link, Router } from '@reach/router';
 // import GoogleMapsContainer from './renderMap';
-// import routes from '../../SampleData';
 import ParkInfo from './ParkInfo';
 
 import Weather from './Weather';
