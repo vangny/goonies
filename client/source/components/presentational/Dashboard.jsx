@@ -3,7 +3,6 @@ import React from 'react';
 // import GoogleMapsContainer from './renderMap';
 // import routes from '../../SampleData';
 import ParkInfo from './ParkInfo';
-import UserProfile from './UserProfile';
 
 import Weather from './Weather';
 
