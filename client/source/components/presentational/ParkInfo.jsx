@@ -59,21 +59,6 @@ class ParkInfo extends React.Component {
             </p>
           </div>
         ))}
-        <h3>Park Info</h3>
-        <div>
-          <p>
-            {info.description}
-            <br />
-            <a href={info.url}>Learn More</a>
-          </p>
-          <p>
-            <strong>Directions</strong>
-            <br />
-            {info.directionsInfo}
-            <br />
-            <a href={info.directionsUrl}>Driving Directions</a>
-          </p>
-        </div>
       </div>
     );
   }

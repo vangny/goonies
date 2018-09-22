@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MapYourRoute from '../presentational/MapYourRoute';
+import MapYourRoute from '../presentational/Dashboard';
 import Login from '../presentational/Login';
 
 class AppContainer extends React.Component {
@@ -10,6 +10,7 @@ class AppContainer extends React.Component {
       loggedIn: false,
       id: 0,
     };
+
     this.transferUserInfo = this.transferUserInfo.bind(this);
     this.logOut = this.logOut.bind(this);
   }
