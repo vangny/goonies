@@ -1,11 +1,19 @@
 // import React from 'react';
 // import PropTypes from 'prop-types';
 
-// const Route = () => (
-//   <div className="route">
-//       hi
-//   </div>
-// );
+const Route = ({ route }) => {
+  return (
+    <div className="route">
+    <span>Trail Name: {route.name}</span><br/>
+    <span>Type: {route.type}</span><br/>
+    <span>Difficulty: {route.difficulty}</span><br/>
+    <span>Location: {route.location}</span><br/>
+    <span>Length: {route.length}</span><br/>
+    <span>Started At: {route.start}</span><br/>
+    <span>Ended by: {route.end}</span><br/><br/>
+    </div>
+  );
+}
 
 // Route.propTypes = {
 //   route: PropTypes.shape({
@@ -18,4 +26,4 @@
 //   handleEdit: PropTypes.func.isRequired,
 // };
 
-// export default Route;
+export default Route;
