@@ -16,7 +16,7 @@ class RouteHistory extends React.Component {
         location: 'Yosemite Valley, California',
         length: 14.7,
         start: 'June 10, 10:05 AM',
-        end: 'June 10, 3:35 PM'
+        end: 'June 10, 3:35 PM',
       },
       {
         name: 'Devil\'s Drop',
@@ -25,16 +25,16 @@ class RouteHistory extends React.Component {
         location: 'Yosemite Valley, California',
         length: 15.2,
         start: 'June 5, 8:05 AM',
-        end: 'June 5, 2:21 PM'
+        end: 'June 5, 2:21 PM',
       },
       {
-      name: 'Stairway To Heaven',
-      type: 'Featured Hike',
-      difficulty: 'black',
-      location: 'Yosemite Valley, California',
-      length: 12,
-      start: 'May 2, 9:30 AM',
-      end: 'May 2, 1:56 PM'
+        name: 'Stairway To Heaven',
+        type: 'Featured Hike',
+        difficulty: 'black',
+        location: 'Yosemite Valley, California',
+        length: 12,
+        start: 'May 2, 9:30 AM',
+        end: 'May 2, 1:56 PM',
       }],
     };
   }
@@ -66,11 +66,11 @@ class RouteHistory extends React.Component {
           <h1>My Route History</h1>
         </div>
         <div className="routesContainer">
-          {routes.map(route => (
-            <div>
-              <Route route={route}/>
+          {routes.map((route, i) => (
+            <div key={i}>
+              <Route route={route} />
             </div>
-           ))}
+          ))}
         </div>
       </div>
     );
