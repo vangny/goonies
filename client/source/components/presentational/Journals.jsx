@@ -114,7 +114,6 @@ class RouteHistory extends React.Component {
         <div className="routesContainer">
           {routes.map(route => (
             <div>
-              {}
               <Route route={route}/>
             </div>
            ))}
