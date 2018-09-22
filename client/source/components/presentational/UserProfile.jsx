@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import $ from 'jquery';
 import UsernameEdit from './UsernameEdit';
 import ExperienceEdit from './ExperienceEdit';
 
@@ -24,7 +23,6 @@ class UserProfile extends React.Component {
     this.handleCancelChange = this.handleCancelChange.bind(this);
     this.handleNewUsername = this.handleNewUsername.bind(this);
     this.handleNewExperience = this.handleNewExperience.bind(this);
-    
   }
 
 
@@ -59,23 +57,22 @@ class UserProfile extends React.Component {
       });
   }
 
-  passwordMatch(userData) { 
+  passwordMatch(userData) {
     if (userData.data === 'Invalid Password') {
       if (alert('Your old password is incorrect. Please try again.')) {
         window.location.reload();
-        $('#oldPWField').val('');
       }
     } else {
       this.updatePassword();
-      
+
     }
   }
-  
+
   handlePasswordChange() {
     const username = localStorage.getItem('username');
     const {
       oldPassword, newPassword, confirmNewPassword,
-    } = this.state; 
+    } = this.state;
     if (newPassword !== confirmNewPassword) {
       alert('Your new password does not match your password confirmation. Please try again');
       this.emptyPasswords();
@@ -91,9 +88,9 @@ class UserProfile extends React.Component {
       });
     }
   }
-  
+
   //  ************** UserInfo Change *************  //
-  
+
   changeUserProfile(e) {
     const { editUsername, editExperience } = this.state;
     if (e === 'newName') {
@@ -160,7 +157,7 @@ class UserProfile extends React.Component {
   }
 
   render() {
-    
+
     const {
       experience,
 
@@ -168,7 +165,7 @@ class UserProfile extends React.Component {
       editExperience,
     } = this.state;
     const username = localStorage.getItem('username');
-    
+
     return (
       <div className="userprofile">
         <h3>My Profile</h3>

@@ -65,14 +65,14 @@ class Weather extends React.Component {
     } = this.state;
     return (
       <div className="allweather">
-        <div className="currentW">
-          <h2>Current Weather</h2>
+        <div className="current-weather">
+          <h3>Current Weather</h3>
           <h4>
             Location:
             {' '}
             {currentLocation}
           </h4>
-          <h3>{currentWeather}</h3>
+          <h4>{currentWeather}</h4>
           <p>
             Temp:
             {' '}
