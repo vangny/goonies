@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 class ExperienceEdit extends React.Component {
   constructor(props) {
@@ -18,8 +18,7 @@ class ExperienceEdit extends React.Component {
 
   render() {
     const { newExperience } = this.state;
-    console.log(newExperience);// remove
-    // const { handleNewExperience, handleCancelChange } = this.props;
+    const { handleNewExperience, handleCancelChange } = this.props;
     return (
       <div>
         <select name="newExperience" onChange={this.handleChange}>
@@ -27,16 +26,16 @@ class ExperienceEdit extends React.Component {
           <option value="Intermediate">Intermediate</option>
           <option value="Advanced">Advanced</option>
         </select>
-        <button type="button" onClick={() => { console.log('new Experience!'); }}>Save</button>
-        <button type="button" onClick={() => { console.log('cancel experience!'); }}>Cancel</button>
+        <button type="button" onClick={(e) => {handleNewExperience(newExperience)}}>Save</button>
+        <button type="button" onClick={() => {handleCancelChange()}}>Cancel</button>
       </div>
     );
   }
 }
 
-// ExperienceEdit.propTypes = {
-//   handleCancelChange: PropTypes.func.isRequired,
-//   handleNewExperience: PropTypes.func.isRequired,
-// };
+ExperienceEdit.propTypes = {
+  handleCancelChange: PropTypes.func.isRequired,
+  handleNewExperience: PropTypes.func.isRequired,
+};
 
 export default ExperienceEdit;

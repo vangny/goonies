@@ -20,6 +20,7 @@ const User = sequelize.define('user', {
 });
 
 const Routes = sequelize.define('route', {
+  username: { type: Sequelize.STRING },
   routeName: { type: Sequelize.STRING },
   date: { type: Sequelize.STRING },
   distanceInMiles: { type: Sequelize.INTEGER },
@@ -119,11 +120,12 @@ const updateExperience = function (experienceOfUser) {
     });
 };
 
-const getRoutes = () => Routes.findAll();
+const getRoutes = username => Routes.find({ username });
 
 const createRoute = (route) => {
   const {
     id,
+    username,
     routeName,
     date,
     distanceInMiles,
@@ -132,6 +134,7 @@ const createRoute = (route) => {
   } = route;
   return Routes.upsert({
     id,
+    username,
     routeName,
     date,
     distanceInMiles,

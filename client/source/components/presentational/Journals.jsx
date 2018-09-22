@@ -1,6 +1,6 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-// import axios from 'axios';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 // import RouteContainer from './RouteContainer';
 import Route from './Route';
 
@@ -37,24 +37,36 @@ class RouteHistory extends React.Component {
         end: 'May 2, 1:56 PM',
       }],
     };
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.getRoutes = this.getRoutes.bind(this);
   }
 
-  // getRoutes() {
-  //   const { username } = this.props;
-  //   return axios.get(`/api/routes?username=${username}`)
-  //     .then((newRoutes) => {
-  //       this.setState({
-  //         routes: newRoutes.data,
-  //       });
-  //     });
-  // }
+  componentDidMount() {
+    const { username } = this.props;
+    console.log('username: ', username);
+  }
 
+  getRoutes() {
+    const { username } = this.props;
+    axios.get(`/api/routes?username=${username}`)
+      .then((newRoutes) => {
+        console.log('Routes returned from database!')
+        this.setState({
+          routes: newRoutes.data,
+        });
+      });
+  }
 
   // console.log(this.state.routes) delete this. just here to pass tests.
   addToJournal() {
+    const { username } = this.props;
     // placeholder return statement to avoid getting flagged
-    this.one = 1;
-    return this.one;
+    axios.patch(`/api/routes?username=${username}`)
+      .then((routes) => {
+        this.setState({
+          routes: routes.data,
+        });
+      });
   }
 
   render() {
@@ -77,9 +89,8 @@ class RouteHistory extends React.Component {
   }
 }
 
-// RouteHistory.propTypes = {
-//   routes: PropTypes.arrayOf(PropTypes.object).isRequired,
-//   username: PropTypes.string.isRequired,
-// };
+RouteHistory.propTypes = {
+  username: PropTypes.string.isRequired,
+};
 
 export default RouteHistory;

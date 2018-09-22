@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 class UsernameEdit extends React.Component {
   constructor(props) {
@@ -8,29 +8,42 @@ class UsernameEdit extends React.Component {
       newUsername: '',
     };
     this.handleChange = this.handleChange.bind(this);
+    // this.changeUsername = this.changeUsername.bind(this);
   }
 
   handleChange(e) {
     this.setState({
-      [e.target.name]: e.target.value,
+      newUsername: e.target.value,
     });
   }
 
+  // changeUsername() {
+  //   const { newUsername } = this.state;
+  //   console.log(newUsername);
+  // }
+
   render() {
     const { newUsername } = this.state;
+    const { username, handleNewUsername } = this.props;
     console.log(newUsername);
     return (
       <div>
-        <input type="text" name="newUsername" onChange={this.handleChange} />
+        OldUsername: {' '}
+        { username }
+        <br />
+        <br />
+        NewUsername: {' '}
+        <input type="text" name="newName" onChange={(e) => this.handleChange(e)} />
+        <button type="button" id="usernameChange" onClick={() => handleNewUsername(newUsername)}>Change Name</button>
       </div>
     );
   }
 }
 
-// UsernameEdit.propTypes = {
-//   username: PropTypes.string.isRequired,
-//   handleCancelChange: PropTypes.func.isRequired,
-//   handleNewUsername: PropTypes.func.isRequired,
-// };
+UsernameEdit.propTypes = {
+  username: PropTypes.string.isRequired,
+  // handleCancelChange: PropTypes.func.isRequired,
+  handleNewUsername: PropTypes.func.isRequired,
+};
 
 export default UsernameEdit;
