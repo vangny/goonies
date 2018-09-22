@@ -73,12 +73,7 @@ class RouteHistory extends React.Component {
     return (
       <div className="routeHistory">
         <div className="routesHeader">
-<<<<<<< HEAD
-          <h1>My Route Journal</h1>
-          <button className="addRouteButton" type="button" onClick={this.addRoute}>Add New Route</button>
-=======
           <h1>My Route History</h1>
->>>>>>> Add static data into Journals which renders route but still needs to link to dashboard
         </div>
         <div className="routesContainer">
           {routes.map(route => (
