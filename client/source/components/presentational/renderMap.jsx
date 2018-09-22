@@ -104,8 +104,6 @@ class GoogleMapsContainer extends React.Component {
     )));
     return (
       <div>
-
-        <TrailList hikingTrails={this.state.hikingTrails} />
         <YosemiteMap
           googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${this.state.apiKey}`}
           loadingElement={<div style={{ height: '100%' }} />}
