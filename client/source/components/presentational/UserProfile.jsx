@@ -75,10 +75,7 @@ class UserProfile extends React.Component {
     const username = localStorage.getItem('username');
     const {
       oldPassword, newPassword, confirmNewPassword,
-    } = this.state;
-    console.log(username)
-    console.log(this.state)
-    
+    } = this.state; 
     if (newPassword !== confirmNewPassword) {
       alert('Your new password does not match your password confirmation. Please try again');
       this.emptyPasswords();
@@ -166,9 +163,7 @@ class UserProfile extends React.Component {
     
     const {
       experience,
-      oldPassword,
-      newPassword,
-      confirmNewPassword,
+
       editUsername,
       editExperience,
     } = this.state;
