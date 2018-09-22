@@ -39,7 +39,7 @@ app.get('/api/users/login', (req, res) => {
   // pass username and password to database to verify user
   db.verifyUser(req.query)
     .then((data) => {
-      res.send(data);
+      res.send(data.username);
     })
     .catch((err) => {
       if (err.message === 'Invalid Password') {

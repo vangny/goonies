@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+// import { Link, Router} from '@reach/router';
 import Dashboard from '../presentational/Dashboard';
 import Login from '../presentational/Login';
 import MapYourRoute from '../presentational/MapYourRoute';
@@ -11,29 +12,33 @@ class AppContainer extends React.Component {
     super(props);
     this.state = {
       loggedIn: false,
-      session: '',
-      id: 0,
+      username: '',
       view: 'dash',
     };
     this.transferUserInfo = this.transferUserInfo.bind(this);
     this.logOut = this.logOut.bind(this);
+<<<<<<< HEAD
     this.changeView = this.changeView.bind(this);
+=======
+    this.viewHandler = this.viewHandler.bind(this);
+>>>>>>> 08758215f41f474f5d4336e5054c5706b8be4419
   }
 
   componentDidMount() {
     this.setState({
       loggedIn: localStorage.getItem('loggedIn'),
-      id: localStorage.getItem('id'),
+      username: localStorage.getItem('username'),
     });
   }
 
   transferUserInfo(userData) {
     this.setState({
       loggedIn: true,
+      username: userData,
     });
     localStorage.setItem('loggedIn', true);
-    localStorage.setItem('id', userData.id);
-    // console.log('localStorage: ', localStorage);
+    localStorage.setItem('username', userData);
+    console.log('userData: ', userData)
   }
 
   changeView(view) {
@@ -47,13 +52,13 @@ class AppContainer extends React.Component {
         return <Dashboard id={id} logOut={this.logOut} handleChange={this.changeView} />;// dashboard
       }
       if (view === 'journal') {
-        return <Journals />;
+        return <Journals username={username} />;
       }
       if (view === 'trails') {
         return <MapYourRoute />;
       }
       if (view === 'profile') {
-        return <Profile />;
+        return <Profile username={username}/>;
       }
     }
     return <Login transferUserInfo={this.transferUserInfo} />;

@@ -37,9 +37,7 @@ class Login extends React.Component {
         if (res.data === 'Invalid Password') {
           alert('Invalid username and password. Please try again.');
         } else {
-          //  success! redirect
           transferUserInfo(res.data);
-          console.log('success!');
         }
       })
       .catch((err) => {
