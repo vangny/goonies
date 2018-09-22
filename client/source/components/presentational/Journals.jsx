@@ -8,15 +8,6 @@ class RouteHistory extends React.Component {
   constructor({ props /* routes */}) {
     super(props);
 
-<<<<<<< HEAD
-    // this.state = {
-    //   routes: '',
-    // };
-
-    // this.addRoute = this.addRoute.bind(this);
-    // this.handleDelete = this.handleDelete.bind(this);
-    // this.handleUpsert = this.handleUpsert.bind(this);
-=======
     this.state = {
       routes: [{
         name: 'Half Dome',
@@ -46,7 +37,6 @@ class RouteHistory extends React.Component {
       end: 'May 2, 1:56 PM'
       }],
     };
->>>>>>> Add static data into Journals which renders route but still needs to link to dashboard
   }
 
   // getRoutes() {
