@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="style.css">
     <title>Goonies Backpacking App</title>
     <link rel="manifest" href="manifest.json">
+    <script>
+      navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('SW registered!', reg))
+          .catch(err => console.log('Boo!', err));
+
+      setTimeout(() => {
+          const img = new Image();
+          img.src = './images/icons/icon-512x512.png';
+          document.body.appendChild(img);
+      }, 3000);
+    </script>
 </head>
 <body>
     <div id="app">
