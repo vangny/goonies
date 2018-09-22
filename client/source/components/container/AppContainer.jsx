@@ -7,7 +7,7 @@ class AppContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      session: '',
+      loggedIn: false,
       id: 0,
     };
     this.transferUserInfo = this.transferUserInfo.bind(this);
@@ -15,26 +15,27 @@ class AppContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ session: localStorage.getItem('id') });
+    this.setState({ id: localStorage.getItem('id') });
   }
 
   transferUserInfo(userData) {
+    localStorage.setItem('id', userData.id);
     this.setState({
-      session: userData,
+      loggedIn: true,
     });
-    localStorage.setItem('id', userData.id)
+    // console.log('localStorage: ', localStorage);
   }
 
   checkSession() {
-    const { session, id } = this.state;
-    if (session) {
-      return <MapYourRoute id={id} logOut={this.logOut}/>;// dashboard
+    const { loggedIn, id } = this.state;
+    if (loggedIn) {
+      return <MapYourRoute id={id} logOut={this.logOut} />;// dashboard
     }
     return <Login transferUserInfo={this.transferUserInfo} />;
   }
 
   logOut() {
-    this.setState({ session: null });
+    this.setState({ loggedIn: false });
     localStorage.clear();
   }
 

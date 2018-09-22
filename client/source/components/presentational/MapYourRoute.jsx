@@ -1,11 +1,11 @@
 import React from 'react';
 // import { Link, Router } from '@reach/router';
+import PropTypes from 'prop-types';
 import GoogleMapsContainer from './renderMap';
 // import Journals from './Journals';
 // import routes from '../../SampleData';
 // import ParkInfo from './ParkInfo';
 // import UserProfile from './UserProfile';
-import PropTypes from 'prop-types';
 
 // import Weather from './Weather';
 
