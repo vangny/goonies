@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 // import { Redirect } from '@reach/router';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import SignUp from './SignUp';
 
 
@@ -28,7 +28,7 @@ class Login extends React.Component {
   handleLogin() {
     const { username, password } = this.state;
     const LoginInfo = { username, password };
-    // const { transferUserInfo } = this.props;
+    const { transferUserInfo } = this.props;
 
     axios.get('/api/users/login', {
       params: LoginInfo,
@@ -38,7 +38,7 @@ class Login extends React.Component {
           alert('Invalid username and password. Please try again.');
         } else {
           //  success! redirect
-          // transferUserInfo('user');
+          transferUserInfo(res.data);
           console.log('success!');
         }
       })
@@ -98,8 +98,8 @@ class Login extends React.Component {
   }
 }
 
-// Login.propTypes = {
-//   transferUserInfo: PropTypes.func.isRequired,
-// };
+Login.propTypes = {
+  transferUserInfo: PropTypes.func.isRequired,
+};
 
 export default Login;

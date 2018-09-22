@@ -5,6 +5,7 @@ import GoogleMapsContainer from './renderMap';
 // import routes from '../../SampleData';
 // import ParkInfo from './ParkInfo';
 // import UserProfile from './UserProfile';
+import PropTypes from 'prop-types';
 
 // import Weather from './Weather';
 
@@ -18,10 +19,12 @@ class MapYourRoute extends React.Component {
 
   render() {
     const { id } = this.state;
+    const { logOut } = this.props;
     console.log(id);
     // const { id } = this.props;
     return (
       <div>
+        <button type="button" onClick={logOut}>Log Out</button>
         <h3>Your Map</h3>
         <div>
           <GoogleMapsContainer />
@@ -44,5 +47,7 @@ class MapYourRoute extends React.Component {
   }
 }
 
-
+MapYourRoute.propTypes = {
+  logOut: PropTypes.func.isRequired,
+};
 export default MapYourRoute;

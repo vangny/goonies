@@ -11,21 +11,31 @@ class AppContainer extends React.Component {
       id: 0,
     };
     this.transferUserInfo = this.transferUserInfo.bind(this);
+    this.logOut = this.logOut.bind(this);
   }
 
+  componentDidMount() {
+    this.setState({ session: localStorage.getItem('id') });
+  }
 
   transferUserInfo(userData) {
     this.setState({
       session: userData,
     });
+    localStorage.setItem('id', userData.id)
   }
 
   checkSession() {
     const { session, id } = this.state;
-    if (!session) {
-      return <MapYourRoute id={id} />;// dashboard
+    if (session) {
+      return <MapYourRoute id={id} logOut={this.logOut}/>;// dashboard
     }
     return <Login transferUserInfo={this.transferUserInfo} />;
+  }
+
+  logOut() {
+    this.setState({ session: null });
+    localStorage.clear();
   }
 
   render() {
