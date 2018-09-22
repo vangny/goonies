@@ -10,6 +10,7 @@ class AppContainer extends React.Component {
       loggedIn: false,
       session: '',
       id: 0,
+      view: 'dash',
     };
 
     this.transferUserInfo = this.transferUserInfo.bind(this);
@@ -17,7 +18,10 @@ class AppContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ loggedIn: localStorage.getItem('loggedIn') });
+    this.setState({
+      loggedIn: localStorage.getItem('loggedIn'),
+      id: localStorage.getItem('id'),
+    });
   }
 
   transferUserInfo(userData) {
@@ -29,10 +33,24 @@ class AppContainer extends React.Component {
     // console.log('localStorage: ', localStorage);
   }
 
-  checkSession() {
-    const { loggedIn, id } = this.state;
+  changeView(view) {
+  
+  }
+
+  viewHandler() {
+    const { loggedIn, id, view} = this.state;
     if (loggedIn) {
+<<<<<<< Updated upstream
       return <Dashboard id={id} logOut={this.logOut} />;// dashboard
+=======
+      if (view === 'dash') {
+        return <MapYourRoute id={id} logOut={this.logOut} />;
+      }
+      if (view === 'journal') {
+        return <Journals />;
+      }
+
+>>>>>>> Stashed changes
     }
     return <Login transferUserInfo={this.transferUserInfo} />;
   }
@@ -46,7 +64,7 @@ class AppContainer extends React.Component {
     return (
       <div className="header">
         <h1 className="logo">Backpacker</h1>
-        {this.checkSession()}
+        {this.viewHandler()}
       </div>
     );
   }
