@@ -19,7 +19,6 @@ class MapYourRoute extends React.Component {
 
   render() {
     const { id } = this.state;
-    const { logOut } = this.props;
     console.log(id);
     // const { id } = this.props;
     return (

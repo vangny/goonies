@@ -1,18 +1,19 @@
 import React from 'react';
 import axios from 'axios';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import $ from 'jquery';
 import UsernameEdit from './UsernameEdit';
 import ExperienceEdit from './ExperienceEdit';
 
 class UserProfile extends React.Component {
   constructor(props) {
     super(props);
-
+    const { username } = this.props;
     this.state = {
-      username: '',
+      username,
       experience: '',
       oldPassword: '',
-      newPassword: 'filler',
+      newPassword: '',
       confirmNewPassword: '',
       editUsername: false,
       editExperience: false,
@@ -23,6 +24,7 @@ class UserProfile extends React.Component {
     this.handleCancelChange = this.handleCancelChange.bind(this);
     this.handleNewUsername = this.handleNewUsername.bind(this);
     this.handleNewExperience = this.handleNewExperience.bind(this);
+    
   }
 
 
@@ -57,49 +59,51 @@ class UserProfile extends React.Component {
       });
   }
 
-  passwordMatch(userData) { // need to fix
+  passwordMatch(userData) { 
     if (userData.data === 'Invalid Password') {
       if (alert('Your old password is incorrect. Please try again.')) {
         window.location.reload();
+        $('#oldPWField').val('');
       }
-      this.resetPasswordFields();
     } else {
       this.updatePassword();
-      this.resetPasswordFields();
+      
     }
   }
-
+  
   handlePasswordChange() {
+    const username = localStorage.getItem('username');
     const {
-      username, oldPassword, newPassword, confirmNewPassword,
+      oldPassword, newPassword, confirmNewPassword,
     } = this.state;
-
+    console.log(username)
+    console.log(this.state)
+    
     if (newPassword !== confirmNewPassword) {
       alert('Your new password does not match your password confirmation. Please try again');
       this.emptyPasswords();
     } else if (newPassword === oldPassword) {
       alert('Your new password should not match your old password. Please try again.');
-      console.log('trigger password change');
     } else {
       axios.get(`/api/users/login?username=${username}&password=${oldPassword}`)
-        .then((res) => {
-          this.passwordMatch(res);
-        })
-        .catch((err) => {
-          console.log('err in verifying password', err);
-        });
+      .then((res) => {
+        this.passwordMatch(res);
+      })
+      .catch((err) => {
+        console.log('err in verifying password', err);
+      });
     }
   }
-
+  
   //  ************** UserInfo Change *************  //
-
+  
   changeUserProfile(e) {
     const { editUsername, editExperience } = this.state;
-    if (e.target.name === 'newName') {
+    if (e === 'newName') {
       this.setState({
         editUsername: !editUsername,
       });
-    } else if (e.target.name === 'newExp') {
+    } else if (e === 'newExp') {
       this.setState({
         editExperience: !editExperience,
       });
@@ -120,13 +124,16 @@ class UserProfile extends React.Component {
   }
 
   handleNewUsername(newUsername) {
-    const { username } = this.state;
+    const username = localStorage.getItem('username')
+    console.log('old username: ', username);
+    console.log('new username: ', newUsername);
     axios.put(`/api/users/update/${username}/${newUsername}`)
       .then((res) => {
         if (res.data === 'Username Updated') {
           this.setState({
             username: newUsername,
           });
+          localStorage.setItem('username', newUsername)
         }
       })
       .then(() => {
@@ -138,7 +145,7 @@ class UserProfile extends React.Component {
   }
 
   handleNewExperience(newExperience) {
-    const { username } = this.state;
+    const username = localStorage.getItem('username')
     axios.put(`/api/users/update/exp/${username}/${newExperience}`)
       .then((res) => {
         if (res.data === 'Experience Updated') {
@@ -156,8 +163,8 @@ class UserProfile extends React.Component {
   }
 
   render() {
+    
     const {
-      username,
       experience,
       oldPassword,
       newPassword,
@@ -165,6 +172,8 @@ class UserProfile extends React.Component {
       editUsername,
       editExperience,
     } = this.state;
+    const username = localStorage.getItem('username');
+    
     return (
       <div className="userprofile">
         <h3>My Profile</h3>
@@ -183,7 +192,7 @@ class UserProfile extends React.Component {
                   {' '}
                   {username}
                 </p>
-                <input type="button" value="Change Username" name="newName" onClick={this.changeUserProfile} />
+                <input type="button" value="Change Username" name="newName" onClick={() => this.changeUserProfile('newName')} />
               </div>
             )
           }
@@ -202,7 +211,7 @@ class UserProfile extends React.Component {
                   {' '}
                   {experience}
                 </p>
-                <input type="button" value="Edit" name="newExp" onClick={this.changeUserProfile} />
+                <input type="button" value="Edit" name="newExp" onClick={() => this.changeUserProfile('newExp')} />
               </div>
             )
           }
@@ -211,19 +220,19 @@ class UserProfile extends React.Component {
           <label htmlFor="oldpassword">
           Old Password:
             <br />
-            <input type="password" name="oldPassword" value={oldPassword} onChange={this.changePassword} />
+            <input id="oldPWField" type="password" name="oldPassword" onChange={this.changePassword} />
           </label>
           <br />
           <label htmlFor="newpassword">
           New Password:
             <br />
-            <input type="password" name="newPassword" value={newPassword} onChange={this.changePassword} />
+            <input id="newPWField" type="password" name="newPassword" onChange={this.changePassword} />
           </label>
           <br />
           <label htmlFor="confirmpassword">
           Confirm New Password:
             <br />
-            <input type="password" name="confirmNewPassword" value={confirmNewPassword} onChange={this.changePassword} />
+            <input id="confirmNewPW" type="password" name="confirmNewPassword" onChange={this.changePassword} />
           </label>
           <br />
           <input type="button" value="Update Password" onClick={this.handlePasswordChange} />
@@ -233,8 +242,8 @@ class UserProfile extends React.Component {
   }
 }
 
-// UserProfile.propTypes = {
-//   userInfo: PropTypes.objectOf(PropTypes.string).isRequired,
-// };
+UserProfile.propTypes = {
+  username: PropTypes.string.isRequired,
+};
 
 export default UserProfile;
