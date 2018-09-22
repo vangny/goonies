@@ -31,7 +31,7 @@ class Weather extends React.Component {
           currentWind: response.data.wind.speed,
           currentLocation: response.data.name,
           currentWeather: response.data.weather[0].description,
-        });
+        }, () => this.render());
       })
       .catch((error) => {
         console.log(error);
@@ -68,7 +68,7 @@ class Weather extends React.Component {
         <div className="currentW">
           <h2>Current Weather</h2>
           <h4>
-            At:
+            Location:
             {' '}
             {currentLocation}
           </h4>

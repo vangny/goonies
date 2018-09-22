@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MapYourRoute from '../presentational/MapYourRoute';
+import Dashboard from '../presentational/Dashboard';
 import Login from '../presentational/Login';
 
 class AppContainer extends React.Component {
@@ -11,6 +11,7 @@ class AppContainer extends React.Component {
       session: '',
       id: 0,
     };
+
     this.transferUserInfo = this.transferUserInfo.bind(this);
     this.logOut = this.logOut.bind(this);
   }
@@ -31,7 +32,7 @@ class AppContainer extends React.Component {
   checkSession() {
     const { loggedIn, id } = this.state;
     if (loggedIn) {
-      return <MapYourRoute id={id} logOut={this.logOut} />;// dashboard
+      return <Dashboard id={id} logOut={this.logOut} />;// dashboard
     }
     return <Login transferUserInfo={this.transferUserInfo} />;
   }

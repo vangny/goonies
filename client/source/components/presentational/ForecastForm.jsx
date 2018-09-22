@@ -1,5 +1,6 @@
+
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 
 class ForecastForm extends React.Component {
@@ -19,8 +20,8 @@ class ForecastForm extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    // const { fiveday } = this.props;
-    const fiveday = 'change this';
+    const { fiveday } = this.props;
+    // const fiveday = 'change this';
     if (fiveday !== prevProps.fiveday) {
       this.getDay2HighLow();
       this.getDay3HighLow();
@@ -29,8 +30,8 @@ class ForecastForm extends React.Component {
   }
 
   getTomHighLow() {
-    // const { fiveday } = this.props;
-    const fiveday = 'change this';
+    const { fiveday } = this.props;
+    // const fiveday = 'change this';
     let high = -Infinity;
     let low = Infinity;
     const tomo = fiveday.slice(0, 8);
@@ -49,8 +50,8 @@ class ForecastForm extends React.Component {
   }
 
   getDay2HighLow() {
-    // const { fiveday } = this.props;
-    const fiveday = 'change this';
+    const { fiveday } = this.props;
+    // const fiveday = 'change this';
     let high = -Infinity;
     let low = Infinity;
     const day2 = fiveday.slice(8, 16);
@@ -69,8 +70,8 @@ class ForecastForm extends React.Component {
   }
 
   getDay3HighLow() {
-    // const { fiveday } = this.props;
-    const fiveday = 'change this';
+    const { fiveday } = this.props;
+    // const fiveday = 'change this';
     let high = -Infinity;
     let low = Infinity;
     const day3 = fiveday.slice(16, 24);
@@ -165,8 +166,8 @@ class ForecastForm extends React.Component {
   }
 }
 
-// ForecastForm.propTypes = {
-//   fiveday: PropTypes.arrayOf(PropTypes.object).isRequired,
-// };
+ForecastForm.propTypes = {
+  fiveday: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default ForecastForm;

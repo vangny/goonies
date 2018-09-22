@@ -11,9 +11,9 @@ class RouteHistory extends React.Component {
     //   routes: '',
     // };
 
-    this.addRoute = this.addRoute.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-    this.handleUpsert = this.handleUpsert.bind(this);
+    // this.addRoute = this.addRoute.bind(this);
+    // this.handleDelete = this.handleDelete.bind(this);
+    // this.handleUpsert = this.handleUpsert.bind(this);
   }
 
   // getRoutes() {
@@ -69,14 +69,8 @@ class RouteHistory extends React.Component {
     return (
       <div className="routeHistory">
         <div className="routesHeader">
-          <h1>My Route History</h1>
+          <h1>My Route Journal</h1>
           <button className="addRouteButton" type="button" onClick={this.addRoute}>Add New Route</button>
-          <p>
-            Average Speed:
-            {15/* <- change this value to something dynamic */}
-            {' '}
-            MPH
-          </p>
         </div>
         <div className="routesContainer">
           { /* routes.map(route => (
