@@ -45,7 +45,16 @@ class AppContainer extends React.Component {
   render() {
     return (
       <div className="header">
-        <h1 className="logo">Backpacker</h1>
+        <nav>
+          <div></div>
+          <div className="logo"><a href="/">Backpacker</a></div>
+          <div>
+            <ul>
+              <li><a href="/">Profile</a></li>
+              <li><a href="/">Logout</a></li>
+            </ul>
+          </div>
+        </nav>
         {this.checkSession()}
       </div>
     );

@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  background: #9daa9d;
+  overflow: hidden;
+}
