@@ -17,6 +17,7 @@ class AppContainer extends React.Component {
     };
     this.transferUserInfo = this.transferUserInfo.bind(this);
     this.logOut = this.logOut.bind(this);
+    this.changeView = this.changeView.bind(this);
   }
 
   componentDidMount() {
@@ -40,10 +41,10 @@ class AppContainer extends React.Component {
   }
 
   viewHandler() {
-    const { loggedIn, id, view} = this.state;
+    const { loggedIn, id, view } = this.state;
     if (loggedIn) {
       if (view === 'dash') {
-        return <Dashboard id={id} logOut={this.logOut} />;// dashboard
+        return <Dashboard id={id} logOut={this.logOut} handleChange={this.changeView} />;// dashboard
       }
       if (view === 'journal') {
         return <Journals />;
@@ -66,19 +67,25 @@ class AppContainer extends React.Component {
   render() {
     const { loggedIn } = this.state;
     return (
-      <div className="header">
+      <div className="container">
         {
           loggedIn ? (
-          <nav>
-            <span type="button" id="dash" onClick={() => this.changeView('dash')}>Dashboard</span>
-            <span type="button" id="journals" onClick={() => this.changeView('journal')}>Journals</span>
-            <span type="button" id="trailInfo" onClick={() => this.changeView('trails')}>TrailInfo</span>
-            <span type="button" id="profile" onClick={() => this.changeView('profile')}>Profile</span>
-            <span type="button" id="logOut" onClick={this.logOut}>Log Out</span>
-          </nav>) : null
+            <div className="sidebar">
+              <nav>
+               <div>
+                <span className="menu" id="logo" onClick={() => this.changeView('dash')}>BackPacker</span>
+                <span className="menu" id="dash" onClick={() => this.changeView('dash')}>Dashboard</span>
+                <span className="menu" id="journals" onClick={() => this.changeView('journal')}>Journals</span>
+                <span className="menu" id="trailInfo" onClick={() => this.changeView('trails')}>TrailInfo</span>
+                <span className="menu" id="profile" onClick={() => this.changeView('profile')}>Profile</span>
+                <span className="menu" id="logOut" onClick={this.logOut}>Log Out</span>
+                </div>
+              </nav>
+            </div>) : null
         }
-        <h1 className="logo">Backpacker</h1>
-        {this.viewHandler()}
+        <div className="content">
+          {this.viewHandler()}
+        </div>
       </div>
     );
   }

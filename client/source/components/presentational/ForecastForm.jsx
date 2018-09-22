@@ -103,12 +103,12 @@ class ForecastForm extends React.Component {
       day3Weather,
     } = this.state;
     return (
-      <div className="threedayforecast">
-        <h2>3 Day Forecast</h2>
-        <div className="foreHolder">
+      <div className="three-day-forecast">
+        <h3>3 Day Forecast</h3>
+        <div className="forecast">
           <div className="tomorrow">
-            <h3> Tomorrow </h3>
-            <h4>{tomorrowWeather}</h4>
+            <h4> Tomorrow </h4>
+            <p>Forecast: {tomorrowWeather}</p>
             <p>
               High Temp:
               {' '}
@@ -125,8 +125,8 @@ class ForecastForm extends React.Component {
             </p>
           </div>
           <div className="day2">
-            <h3> Day 2 </h3>
-            <h4>{day2Weather}</h4>
+            <h4> Day 2 </h4>
+            <p>Forecast: {day2Weather}</p>
             <p>
               High Temp:
               {' '}
@@ -143,8 +143,8 @@ class ForecastForm extends React.Component {
             </p>
           </div>
           <div className="day3">
-            <h3> Day 3 </h3>
-            <h4>{day3Weather}</h4>
+            <h4> Day 3 </h4>
+            <p>Forecast: {day3Weather}</p>
             <p>
               High Temp:
               {' '}
