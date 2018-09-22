@@ -8,6 +8,7 @@ class AppContainer extends React.Component {
     super(props);
     this.state = {
       loggedIn: false,
+      session: '',
       id: 0,
     };
     this.transferUserInfo = this.transferUserInfo.bind(this);
@@ -15,14 +16,15 @@ class AppContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ id: localStorage.getItem('id') });
+    this.setState({ loggedIn: localStorage.getItem('loggedIn') });
   }
 
   transferUserInfo(userData) {
-    localStorage.setItem('id', userData.id);
     this.setState({
       loggedIn: true,
     });
+    localStorage.setItem('loggedIn', true);
+    localStorage.setItem('id', userData.id);
     // console.log('localStorage: ', localStorage);
   }
 
