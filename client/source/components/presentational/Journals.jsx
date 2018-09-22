@@ -67,37 +67,6 @@ class RouteHistory extends React.Component {
     return this.one;
   }
 
-  // handleDelete(targetRoute) {
-  //   /* if targetRoute has tempId, it has not yet been saved to the database
-  //   and we can delete locally without communicating to the database */
-  //   if (!targetRoute.id) {
-  //     const { routes } = this.state;
-  //     let targetIndex;
-  //     for (let i = 0; i < routes.length; i += 1) {
-  //       if (routes[i].tempId === targetRoute.tempId) {
-  //         targetIndex = i;
-  //       }
-  //     }
-  //     routes.splice(targetIndex, 1);
-  //     this.setState({
-  //       routes,
-  //     });
-  //     /* otherwise deletion requires communicating with the database */
-  //   } else {
-  //     axios.delete('/api/routes', { params: targetRoute })
-  //       // .then(res => console.log('delete successful', res))
-  //       .then(() => this.getRoutes())
-  //       .catch(error => console.log(error));
-  //   }
-  // }
-
-  // handleUpsert(route) {
-  //   const { username } = this.props;
-  //   axios.patch('/api/routes', { data: { route, username } })
-  //     .then(() => console.log('upsert successful'))
-  //     .then(() => this.getRoutes());
-  // }
-
   render() {
     const { routes } = this.state;
     // console.log(routes);
