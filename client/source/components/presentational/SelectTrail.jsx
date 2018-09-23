@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SelectTrail = ({ toggleViews, trailInfo }) => (
+const SelectTrail = ({ toggleViews, trailInfo, startHike }) => {
+  const startHandler = (event) => {
+    startHike();
+  };
+
+  return (
     <div>
       <button type="button" onClick={() => toggleViews()}>Shrink Map</button>
       <div>
@@ -15,8 +20,10 @@ const SelectTrail = ({ toggleViews, trailInfo }) => (
           <li>{`Total Votes: ${trailInfo.starVotes}`}</li>
         </ul>
       </div>
+      <button type="button" onClick={startHandler}>Start</button>
     </div>
-);
+  );
+};
 
 SelectTrail.propTypes = {
   toggleViews: PropTypes.func.isRequired,

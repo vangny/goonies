@@ -1,8 +1,9 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Map from './Map';
 import Journals from './Journals';
 import SelectTrail from './SelectTrail';
+import StartTrail from './StartTrail';
 
 
 class Trails extends React.Component {
@@ -10,37 +11,58 @@ class Trails extends React.Component {
     super(props);
     this.state = {
       username: '',
-      viewMap: true,
-      viewTrail: false,
+      view: 'map',
       trailInfo: {},
+      started: '',
+      ended: '',
     };
     this.toggleViews = this.toggleViews.bind(this);
     this.viewHandler = this.viewHandler.bind(this);
     this.getTrail = this.getTrail.bind(this);
+    this.startHike = this.startHike.bind(this);
   }
 
   getTrail(trail) {
     this.setState({
       trailInfo: trail,
     }, () => {
-      this.toggleViews();
+      this.toggleViews('trail');
     });
   }
 
-  toggleViews() {
-    const { viewTrail, viewMap } = this.state;
+  startHike() {
+    const start = new Date().toLocaleString();
     this.setState({
-      viewTrail: !viewTrail,
-      viewMap: !viewMap,
+      started: start,
+    }, () => {
+      this.toggleViews('start');
+    });
+  }
+
+  endHike() {
+    const end = new Date().toLocaleString();
+    this.setState({
+      ended: end,
+    }, () => {
+      //super toggle view
+      this.toggleViews('map');
+    });
+  }
+
+  toggleViews(view) {
+    this.setState({
+      view,
       });
   }
 
   viewHandler() {
-    const { viewTrail, viewMap, trailInfo } = this.state;
-    if (viewMap) {
+    const { view, trailInfo } = this.state;
+    if (view === 'map') {
       return <Map getTrail={this.getTrail} />
-    } else if (viewTrail) {
-      return <SelectTrail toggleViews={this.toggleViews} trailInfo={trailInfo} />
+    } else if (view === 'trail') {
+      return <SelectTrail toggleViews={this.toggleViews} trailInfo={trailInfo} startHike={this.startHike} />
+    } else if (view === 'start') {
+      return <StartTrail />
     }
     
     return;
