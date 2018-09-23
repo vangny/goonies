@@ -11,9 +11,10 @@
     "lint": "eslint './client/source/components/**/*.jsx' db server",
     "lintFix": "eslint --fix './client/source/components/**/*.jsx' db server",
     "react-dev": "webpack --mode development --watch",
+    "react-prod": "webpack --mode production",
     "server-dev": "nodemon --inspect server/index.js --watch",
     "start": "node server/index.js",
-    "postinstall": "webpack -d"
+    "postinstall": "webpack --mode production"
   },
   "jest": {
     "verbose": true,
@@ -42,6 +43,7 @@
     "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.2",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "compression-webpack-plugin": "^2.0.0",
     "enzyme-adapter-react-16": "^1.5.0",
     "enzyme-to-json": "^3.3.4",
     "eslint": "^5.5.0",
@@ -54,9 +56,10 @@
     "html-webpack-plugin": "^3.2.0",
     "jest": "^23.6.0",
     "react-test-renderer": "^16.5.1",
+    "terser-webpack-plugin": "^1.1.0",
+    "ts-jest": "^23.1.4",
     "webpack": "^4.17.2",
-    "webpack-cli": "^3.1.0",
-    "ts-jest": "^23.1.4"
+    "webpack-cli": "^3.1.0"
   },
   "dependencies": {
     "@reach/router": "^1.1.1",

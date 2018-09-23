@@ -26,7 +26,6 @@ class Map extends React.Component {
   getApiKey() {
     axios.get('/api/key')
       .then((response) => {
-        console.log('apikey?', response.data);
         this.setState({
           apiKey: response.data,
         });
@@ -40,7 +39,6 @@ class Map extends React.Component {
   getTrailsData() {
     axios.get('/api/trails')
       .then((response) => {
-        console.log(response.data.trails);
         this.setState({
           hikingTrails: response.data.trails,
         });
