@@ -8,7 +8,7 @@ const SelectTrail = ({ toggleViews, trailInfo, startHike }) => {
 
   return (
     <div>
-      <button type="button" onClick={() => toggleViews()}>Shrink Map</button>
+      <button type="button" onClick={() => toggleViews('map')}>Shrink Map</button>
       <div>
         {trailInfo.name}
         <br />

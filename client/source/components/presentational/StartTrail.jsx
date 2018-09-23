@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const StartTrail = ({ toggleViews, trailInfo }) => (
+const StartTrail = ({ endHike }) => (
     <div>
-      <button type="button" onClick={() => toggleViews()}>Done</button>
+      <button type="button" onClick={() => endHike()}>Done</button>
     </div>
 );
 
 
 StartTrail.propTypes = {
-  toggleViews: PropTypes.func.isRequired,
+  endHike: PropTypes.func.isRequired,
 };
 
 export default StartTrail;

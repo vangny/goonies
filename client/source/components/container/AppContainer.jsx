@@ -39,7 +39,7 @@ class AppContainer extends React.Component {
   }
 
   changeView(view) {
-    this.setState({ view });
+    this.setState({ view }, () => {console.log(view);});
   }
 
   viewHandler() {
@@ -52,7 +52,7 @@ class AppContainer extends React.Component {
         return <Journals username={username} />;
       }
       if (view === 'trails') {
-        return <Trails />;
+        return <Trails changeOuterView={this.changeView} />;
       }
       if (view === 'profile') {
         return <Profile username={username}/>;

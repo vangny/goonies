@@ -20,6 +20,7 @@ class Trails extends React.Component {
     this.viewHandler = this.viewHandler.bind(this);
     this.getTrail = this.getTrail.bind(this);
     this.startHike = this.startHike.bind(this);
+    this.endHike = this.endHike.bind(this);
   }
 
   getTrail(trail) {
@@ -40,12 +41,13 @@ class Trails extends React.Component {
   }
 
   endHike() {
+    const { changeOuterView } = this.props;
     const end = new Date().toLocaleString();
     this.setState({
       ended: end,
     }, () => {
       //super toggle view
-      this.toggleViews('map');
+      changeOuterView('journal');
     });
   }
 
@@ -62,7 +64,7 @@ class Trails extends React.Component {
     } else if (view === 'trail') {
       return <SelectTrail toggleViews={this.toggleViews} trailInfo={trailInfo} startHike={this.startHike} />
     } else if (view === 'start') {
-      return <StartTrail />
+      return <StartTrail endHike={this.endHike} />
     }
     
     return;
