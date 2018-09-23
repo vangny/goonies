@@ -1,43 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import {
   withScriptjs, withGoogleMap, GoogleMap, Marker,
 } from 'react-google-maps';
 
 import axios from 'axios';
 
-import TrailInfo from './TrailInfo.jsx';
-
-class GoogleMapsContainer extends React.Component {
+class Map extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       apiKey: '',
       hikingTrails: [],
-      selectedTrail: {
-        id: 7005207,
-        name: 'Half Dome',
-        type: 'Featured Hike',
-        summary: 'THE premier route in Yosemite. Hike to the top of the most iconic granite dome in the USA.',
-        difficulty: 'black',
-        stars: 4.9,
-        starVotes: 139,
-        location: 'Yosemite Valley, California',
-        url: 'https://www.hikingproject.com/trail/7005207/half-dome',
-        imgSqSmall: 'https://cdn-files.apstatic.com/hike/7035178_sqsmall_1502461759.jpg',
-        imgSmall: 'https://cdn-files.apstatic.com/hike/7035178_small_1502461759.jpg',
-        imgSmallMed: 'https://cdn-files.apstatic.com/hike/7035178_smallMed_1502461759.jpg',
-        imgMedium: 'https://cdn-files.apstatic.com/hike/7035178_medium_1502461759.jpg',
-        length: 14.7,
-        ascent: 4692,
-        descent: -4691,
-        high: 8662,
-        low: 4062,
-        longitude: -119.5583,
-        latitude: 37.7325,
-        conditionStatus: 'All Clear',
-        conditionDetails: '',
-        conditionDate: '2018-08-20 12:20:25',
-      },
     };
     this.getTrailsData = this.getTrailsData.bind(this);
     this.handleMarkerClick = this.handleMarkerClick.bind(this);
@@ -76,21 +51,18 @@ class GoogleMapsContainer extends React.Component {
       });
   }
 
-  handleMarkerClick(marker) {
-    this.setState({
-      selectedTrail: marker,
-    });
+  handleMarkerClick(trail) {
+    const { getTrail } = this.props;
+    getTrail(trail);
   }
 
   render() {
-    const markers = this.state.hikingTrails.map((trail, i) => (
+    const markers = this.state.hikingTrails.map((trail) => (
       <Marker
-        key={i}
         position={{
           lat: trail.latitude,
           lng: trail.longitude,
         }}
-        // label={(i + 1).toString()}
         onClick={() => this.handleMarkerClick(trail)}
       />
     ));
@@ -110,11 +82,13 @@ class GoogleMapsContainer extends React.Component {
           containerElement={<div style={{ height: '500px', width: '500px' }} />}
           mapElement={<div style={{ height: '100%', width: '100%' }} />}
         />
-        <TrailInfo selectedTrail={this.state.selectedTrail} />
       </div>
-
     );
   }
 }
 
-export default GoogleMapsContainer;
+Map.propTypes = {
+  getTrail: PropTypes.func.isRequired,
+};
+
+export default Map;
