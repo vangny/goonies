@@ -104,7 +104,6 @@ class ForecastForm extends React.Component {
     } = this.state;
     return (
       <div className="three-day-forecast">
-        <h3>3 Day Forecast</h3>
         <div className="forecast">
           <div className="tomorrow">
             <h4> Tomorrow </h4>

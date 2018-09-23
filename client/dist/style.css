@@ -39,9 +39,15 @@ body {
   padding: 1em;
 }
 
-#logo {
+#logo, .login-title {
   font-family: 'Shadows Into Light', cursive;
   font-size: 2em;
+}
+
+.login-title {
+  padding-top: 30px;
+  color: #9DAA9D;
+  font-size: 4em;
 }
 
 nav div {
@@ -65,6 +71,8 @@ nav div {
 
 .menu {
   padding-top: 30px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .dashboard, .trail-journal h1 {
@@ -81,7 +89,8 @@ nav div {
 .park-info h3,
 .all-weather h3,
 .journal-title h1,
-.user-profile h3 {
+.user-profile h3,
+.login h3 {
   font-size: 1em;
   font-weight: 300;
   color: #373d46;
@@ -114,6 +123,12 @@ nav div {
   box-shadow: 0 10px 50px rgba(188, 197, 216, 1);
 }
 
+/*.forecast {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}*/
+
 .route,
 .user-profile {
   background: #fafbfb;
@@ -130,6 +145,22 @@ nav div {
   overflow: scroll;
 }
 
+.login {
+  background: #fafbfb;
+  padding: 0.5em 2em;
+  padding-bottom: 40px;
+  border-radius: 5px;
+  margin: 0 auto;
+  width: 300px;
+  height: 500px;
+  box-shadow: 0 10px 50px rgba(188, 197, 216, 1);
+}
+
+.landing {
+  margin-top: 200px;
+  text-align: center;
+}
+
 /*.forecast:hover,
 .alerts:hover,
 .current-weather:hover,
@@ -137,12 +168,16 @@ nav div {
   box-shadow: 0 10px 50px rgba(188, 197, 216, 1);
 }*/
 
-.profile-input {
+.profile-input, .login-input, .register-input {
   padding: 12px 20px;
   margin: 1em 0;
   border-radius: 1px;
   font-size: .7em;
   box-sizing: border-box;
+}
+
+.login-input, .register-input {
+  font-size: 1em;
 }
 
 .action-link, button {
@@ -165,6 +200,26 @@ nav div {
   border-radius: 40px;
   margin: 1em 0;
   transition: 0.3s;
+ }
+
+.login-button, .register-button {
+  font-size: 1em;
+  color: white;
+  font-weight: 700;
+  background: #60495A;
+  padding: .5em 2em;
+  border-radius: 40px;
+  margin: 1em 0;
+  transition: 0.3s;
+ }
+
+ .login-button, .register-button {
+  font-size: 1.3em;
+  transition: 0.3s;
+ }
+
+ .login-button:hover, .register-button:hover {
+  box-shadow: 0 10px 50px rgba(188, 197, 216, 1);
  }
 
 .action-link:hover {
