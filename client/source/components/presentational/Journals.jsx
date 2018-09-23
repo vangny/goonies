@@ -73,9 +73,9 @@ class RouteHistory extends React.Component {
     const { routes } = this.state;
     // console.log(routes);
     return (
-      <div className="routeHistory">
-        <div className="routesHeader">
-          <h1>My Route History</h1>
+      <div className="trail-journal">
+        <div className="journal-title">
+          <h1>Your Trails</h1>
         </div>
         <div className="routesContainer">
           {routes.map((route, i) => (

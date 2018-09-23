@@ -4,16 +4,16 @@ import React from 'react';
 const Route = ({ route }) => {
   return (
     <div className="route">
-    <span>Trail Name: {route.name}</span><br/>
-    <span>Type: {route.type}</span><br/>
-    <span>Difficulty: {route.difficulty}</span><br/>
-    <span>Location: {route.location}</span><br/>
-    <span>Length: {route.length}</span><br/>
-    <span>Started At: {route.start}</span><br/>
-    <span>Ended by: {route.end}</span><br/><br/>
+    <p className="route-info">Trail Name: {route.name}</p>
+    <p className="route-info">Type: {route.type}</p>
+    <p className="route-info">Difficulty: {route.difficulty}</p>
+    <p className="route-info">Location: {route.location}</p>
+    <p className="route-info">Length: {route.length}</p>
+    <p className="route-info">Started At: {route.start}</p>
+    <p className="route-info">Ended by: {route.end}</p><br/>
     </div>
   );
-}
+};
 
 // Route.propTypes = {
 //   route: PropTypes.shape({

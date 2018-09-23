@@ -166,7 +166,7 @@ class UserProfile extends React.Component {
     const username = localStorage.getItem('username');
 
     return (
-      <div className="userprofile">
+      <div className="user-profile">
         <h3>My Profile</h3>
         <form>
           {
@@ -183,7 +183,7 @@ class UserProfile extends React.Component {
                   {' '}
                   {username}
                 </p>
-                <input type="button" value="Change Username" name="newName" onClick={() => this.changeUserProfile('newName')} />
+                <input className="update-button" type="button" value="Change Username" name="newName" onClick={() => this.changeUserProfile('newName')} />
               </div>
             )
           }
@@ -202,31 +202,28 @@ class UserProfile extends React.Component {
                   {' '}
                   {experience}
                 </p>
-                <input type="button" value="Edit" name="newExp" onClick={() => this.changeUserProfile('newExp')} />
+                <input className="update-button" type="button" value="Edit" name="newExp" onClick={() => this.changeUserProfile('newExp')} />
               </div>
             )
           }
           <br />
           <h3>Change Password</h3>
           <label htmlFor="oldpassword">
-          Old Password:
-            <br />
-            <input id="oldPWField" type="password" name="oldPassword" onChange={this.changePassword} />
+            <p>Old Password:</p>
+            <input className="profile-input" id="oldPWField" type="password" name="oldPassword" onChange={this.changePassword} />
           </label>
           <br />
           <label htmlFor="newpassword">
-          New Password:
-            <br />
-            <input id="newPWField" type="password" name="newPassword" onChange={this.changePassword} />
+            <p>New Password:</p>
+            <input className="profile-input" id="newPWField" type="password" name="newPassword" onChange={this.changePassword} />
           </label>
           <br />
           <label htmlFor="confirmpassword">
-          Confirm New Password:
-            <br />
-            <input id="confirmNewPW" type="password" name="confirmNewPassword" onChange={this.changePassword} />
+            <p>Confirm New Password:</p>
+            <input className="profile-input" id="confirmNewPW" type="password" name="confirmNewPassword" onChange={this.changePassword} />
           </label>
           <br />
-          <input type="button" value="Update Password" onClick={this.handlePasswordChange} />
+          <input className="update-button" type="button" value="Update Password" onClick={this.handlePasswordChange} />
         </form>
       </div>
     );
