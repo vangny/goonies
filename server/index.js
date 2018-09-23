@@ -192,4 +192,11 @@ app.get('*', (req, res) => {
 });
 
 
+// Middleware that uses retrieves .gz files first
+app.get('*.js', function (req, res, next) {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  next();
+});
+
 app.listen(port, () => console.log(`The Goonies are listening on ${port}`));
