@@ -35,11 +35,10 @@ class AppContainer extends React.Component {
     });
     localStorage.setItem('loggedIn', true);
     localStorage.setItem('username', userData);
-    console.log('userData: ', userData)
   }
 
   changeView(view) {
-    this.setState({ view }, () => {console.log(view);});
+    this.setState({ view });
   }
 
   viewHandler() {

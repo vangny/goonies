@@ -37,6 +37,5 @@ module.exports = {
       template: `${SRC_DIR}/index.html`,
       filename: `${DIST_DIR}/index.html`,
     }),
-
   ],
 };
