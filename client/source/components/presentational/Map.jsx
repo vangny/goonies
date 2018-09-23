@@ -57,8 +57,8 @@ class Map extends React.Component {
   }
 
   render() {
-    const markers = this.state.hikingTrails.map((trail) => (
-      <Marker
+    const markers = this.state.hikingTrails.map((trail, i) => (
+      <Marker key={i}
         position={{
           lat: trail.latitude,
           lng: trail.longitude,
@@ -75,7 +75,7 @@ class Map extends React.Component {
       </GoogleMap>
     )));
     return (
-      <div>
+      <div id="map-container">
         <YosemiteMap
           googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${this.state.apiKey}`}
           loadingElement={<div style={{ height: '100%' }} />}

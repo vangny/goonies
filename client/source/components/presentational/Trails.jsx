@@ -66,7 +66,7 @@ class Trails extends React.Component {
     } else if (view === 'start') {
       return <StartTrail endHike={this.endHike} />
     }
-    
+
     return;
   }
 
@@ -74,9 +74,12 @@ class Trails extends React.Component {
   render() {
     return (
       <div>
-        <h3>Your Map</h3>
-        <div>
+        <div className="map">
+        <h1>Trails</h1>
           {this.viewHandler()}
+          <p className="map-info">
+            Click a pin on the map to choose a trail
+          </p>
         </div>
       </div>
     );
