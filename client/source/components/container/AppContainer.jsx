@@ -69,25 +69,33 @@ class AppContainer extends React.Component {
   render() {
     const { loggedIn } = this.state;
     return (
-      <div className="container">
+      <div>
         {
           loggedIn ? (
-            <div className="sidebar">
-              <nav>
-               <div>
-                <span className="menu-logo" id="logo" onClick={() => this.changeView('dash')}>BackPacker</span>
-                <span className="menu" id="dash" onClick={() => this.changeView('dash')}>Dashboard</span>
-                <span className="menu" id="journals" onClick={() => this.changeView('journal')}>Trail Journal</span>
-                <span className="menu" id="trailInfo" onClick={() => this.changeView('trails')}>Trails</span>
-                <span className="menu" id="profile" onClick={() => this.changeView('profile')}>Profile</span>
-                <span className="menu" id="logOut" onClick={this.logOut}>Log Out</span>
-                </div>
-              </nav>
-            </div>) : null
+            <div className="container">
+              <div className="sidebar">
+                <nav>
+                  <div>
+                     <span className="menu-logo" id="logo" onClick={() => this.changeView('dash')}>BackPacker</span>
+                  <span className="menu" id="dash" onClick={() => this.changeView('dash')}>Dashboard</span>
+                  <span className="menu" id="journals" onClick={() => this.changeView('journal')}>Trail Journal</span>
+                  <span className="menu" id="trailInfo" onClick={() => this.changeView('trails')}>Trails</span>
+                  <span className="menu" id="profile" onClick={() => this.changeView('profile')}>Profile</span>
+                  <span className="menu" id="logOut" onClick={this.logOut}>Logout</span>
+                  </div>
+                </nav>
+              </div>
+              <div className="content">
+                {this.viewHandler()}
+              </div>
+            </div>
+          )
+            : (
+              <div className="landing">
+                {this.viewHandler()}
+              </div>
+            )
         }
-        <div className="content">
-          {this.viewHandler()}
-        </div>
       </div>
     );
   }

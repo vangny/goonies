@@ -210,17 +210,17 @@ class UserProfile extends React.Component {
           <h3>Change Password</h3>
           <label htmlFor="oldpassword">
             <p>Old Password:</p>
-            <input className="profile-input" id="oldPWField" type="password" name="oldPassword" onChange={this.changePassword} />
+            <input className="profile-input" type="password" name="oldPassword" onChange={this.changePassword} />
           </label>
           <br />
           <label htmlFor="newpassword">
             <p>New Password:</p>
-            <input className="profile-input" id="newPWField" type="password" name="newPassword" onChange={this.changePassword} />
+            <input className="profile-input" type="password" name="newPassword" onChange={this.changePassword} />
           </label>
           <br />
           <label htmlFor="confirmpassword">
             <p>Confirm New Password:</p>
-            <input className="profile-input" id="confirmNewPW" type="password" name="confirmNewPassword" onChange={this.changePassword} />
+            <input className="profile-input" type="password" name="confirmNewPassword" onChange={this.changePassword} />
           </label>
           <br />
           <input className="update-button" type="button" value="Update Password" onClick={this.handlePasswordChange} />

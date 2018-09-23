@@ -63,24 +63,25 @@ class Login extends React.Component {
     if (view === 'login') {
       return (
         <div className="login">
+          <h1 className="login-title">BackPacker</h1>
           <form>
             <div className="loginfield">
               <label htmlFor="username">
-                Username:
+                <h3>Username:</h3>
+                <input className="login-input" type="text" name="username" onChange={this.handleChange} />
                 <br />
-                <input type="text" name="username" onChange={this.handleChange} />
               </label>
               <br />
               <label htmlFor="password">
-                Password:
-                <br />
-                <input type="password" name="password" onChange={this.handleChange} />
+                <h3>Password:</h3>
+                <input className="login-input" type="password" name="password" onChange={this.handleChange} />
               </label>
               <br />
             </div>
             <div className="loginPageButtons">
-              <input type="button" className="login" value="Login" onClick={this.handleLogin} />
-              <input type="button" value="New User? Register" onClick={this.handleNewUser} />
+              <input className="login-button" type="button" value="Login" onClick={this.handleLogin} />
+              <br />
+              <input className="login-button" id="register" type="button" value="New User? Register" onClick={this.handleNewUser} />
             </div>
           </form>
         </div>
