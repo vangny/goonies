@@ -103,22 +103,6 @@ app.get('/api/routes', (req, res) => {
 app.post('/api/routes', (req, res) => {
   db.createRoute(req.body);
   res.send('Successfully returning');
-    // .then(() => {
-    //   db.getRoutes(req.body.username)
-    //     .then(routes => res.status(200).send(routes))
-    //     .catch(err => console.log(err));
-    // });
-    // .then((created, err) => {
-    //   if (created) {
-    //     res.status(200);
-    //     // console.log('Successfully stored');
-    //     res.send('created: ', created);
-    //   } else {
-    //     res.status(200);
-    //     // console.log('Successfully inserted');
-    //     res.send('not created: ', err);
-    //   }
-    // });
 });
 
 app.delete('/api/routes', (req, res) => {

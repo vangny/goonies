@@ -60,11 +60,10 @@ class RouteHistory extends React.Component {
       });
     });
   }
-  
-  // console.log(this.state.routes) delete this. just here to pass tests.
+
   addToJournal() {
     const { username, viewData } = this.props;
-    axios.post(`/api/routes/`, {
+    axios.post('/api/routes/', {
       username,
       routeName: viewData.trailInfo.name,
       start: viewData.started,
@@ -79,8 +78,9 @@ class RouteHistory extends React.Component {
   }
 
   hikeDiscard() {
-    let { viewData } = this.props;
-    this.setState({ saveView: false });
+    if (confirm('All data from this hike will be lost. Are you sure you want to discard this hike?')) {
+      this.setState({ saveView: false });
+    }
   }
 
   saveView() {
@@ -116,8 +116,6 @@ class RouteHistory extends React.Component {
 
   render() {
     const { routes } = this.state;
-    const { viewData } = this.props;
-    // console.log(routes);
     return (
       <div className="trail-journal">
         { this.saveView() }
