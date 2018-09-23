@@ -39,6 +39,11 @@ body {
   padding: 1em;
 }
 
+#logo {
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 2em;
+}
+
 nav div {
   margin: 0;
   padding: 0;
@@ -47,12 +52,19 @@ nav div {
   text-align: center;
   color: white;
   font-weight: 700;
+}
+
+.menu, .menu-logo {
   opacity: 0.6;
   transition: 0.3s;
 }
 
-nav, .menu:hover {
+.menu:hover, .menu-logo:hover {
   opacity: 1;
+}
+
+.menu {
+  padding-top: 30px;
 }
 
 .dashboard {
@@ -66,7 +78,8 @@ nav, .menu:hover {
 .current-weather h4,
 .three-day-forecast h3,
 .three-day-forecast h4,
-.park-info h3 {
+.park-info h3,
+.all-weather h3 {
   font-size: 1em;
   font-weight: 300;
   color: #373d46;
@@ -80,9 +93,8 @@ nav, .menu:hover {
 }
 
 .forecast,
-.park-info,
+.alerts,
 .current-weather,
-.three-day-forecast,
 .recent {
   display: flex;
   flex-direction: row;
@@ -93,6 +105,13 @@ nav, .menu:hover {
   margin: 1em 0;
   box-shadow: 0 10px 50px rgba(188, 197, 216, 1);
 }
+
+/*.forecast:hover,
+.alerts:hover,
+.current-weather:hover,
+.recent:hover {
+  box-shadow: 0 10px 50px rgba(188, 197, 216, 1);
+}*/
 
 .action-link {
   display: inline-block;
