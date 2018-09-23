@@ -64,7 +64,6 @@ class UserProfile extends React.Component {
       }
     } else {
       this.updatePassword();
-
     }
   }
 
@@ -80,12 +79,12 @@ class UserProfile extends React.Component {
       alert('Your new password should not match your old password. Please try again.');
     } else {
       axios.get(`/api/users/login?username=${username}&password=${oldPassword}`)
-      .then((res) => {
-        this.passwordMatch(res);
-      })
-      .catch((err) => {
-        console.log('err in verifying password', err);
-      });
+        .then((res) => {
+          this.passwordMatch(res);
+        })
+        .catch((err) => {
+          console.log('err in verifying password', err);
+        });
     }
   }
 

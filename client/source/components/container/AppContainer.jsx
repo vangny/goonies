@@ -75,7 +75,7 @@ class AppContainer extends React.Component {
             <div className="sidebar">
               <nav>
                <div>
-                <span className="menu" id="logo" onClick={() => this.changeView('dash')}>BackPacker</span>
+                <span className="menu-logo" id="logo" onClick={() => this.changeView('dash')}>BackPacker</span>
                 <span className="menu" id="dash" onClick={() => this.changeView('dash')}>Dashboard</span>
                 <span className="menu" id="journals" onClick={() => this.changeView('journal')}>Journals</span>
                 <span className="menu" id="trailInfo" onClick={() => this.changeView('trails')}>TrailInfo</span>

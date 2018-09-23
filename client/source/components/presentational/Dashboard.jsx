@@ -14,8 +14,8 @@ const Dashboard = props => (
     <div>
       <ParkInfo />
     </div>
+    <h2>Most Recent Hike</h2>
     <div className="recent">
-      <h2>Most Recent Hike</h2>
       <p>
         Route: {routeData[routeData.length - 1].name}
       </p>

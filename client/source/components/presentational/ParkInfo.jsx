@@ -46,18 +46,20 @@ class ParkInfo extends React.Component {
     return (
       <div className="park-info">
         <h3>Alerts</h3>
-        {alerts.map(alert => (
-          <div key={alert.id}>
-            <p>
-              <strong>{alert.title}</strong>
-              <br />
-              <span>Category: </span>
-              {alert.category}
-              <br />
-              {alert.description}
-            </p>
-          </div>
-        ))}
+        <div className="alerts">
+          {alerts.map(alert => (
+            <div key={alert.id}>
+              <p>
+                <strong>{alert.title}</strong>
+                <br />
+                <span>Category: </span>
+                {alert.category}
+                <br />
+                {alert.description}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
