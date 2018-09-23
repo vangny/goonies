@@ -43,10 +43,10 @@ class AppContainer extends React.Component {
   }
 
   viewHandler() {
-    const { loggedIn, id, view } = this.state;
+    const { loggedIn, username, view } = this.state;
     if (loggedIn) {
       if (view === 'dash') {
-        return <Dashboard id={id} logOut={this.logOut} handleChange={this.changeView} />;// dashboard
+        return <Dashboard username={username} logOut={this.logOut} handleChange={this.changeView} />;// dashboard
       }
       if (view === 'journal') {
         return <Journals username={username} />;
@@ -77,8 +77,8 @@ class AppContainer extends React.Component {
                <div>
                 <span className="menu-logo" id="logo" onClick={() => this.changeView('dash')}>BackPacker</span>
                 <span className="menu" id="dash" onClick={() => this.changeView('dash')}>Dashboard</span>
-                <span className="menu" id="journals" onClick={() => this.changeView('journal')}>Journals</span>
-                <span className="menu" id="trailInfo" onClick={() => this.changeView('trails')}>TrailInfo</span>
+                <span className="menu" id="journals" onClick={() => this.changeView('journal')}>Trail Journal</span>
+                <span className="menu" id="trailInfo" onClick={() => this.changeView('trails')}>Trails</span>
                 <span className="menu" id="profile" onClick={() => this.changeView('profile')}>Profile</span>
                 <span className="menu" id="logOut" onClick={this.logOut}>Log Out</span>
                 </div>

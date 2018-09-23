@@ -21,13 +21,14 @@ class ExperienceEdit extends React.Component {
     const { handleNewExperience, handleCancelChange } = this.props;
     return (
       <div>
-        <select name="newExperience" onChange={this.handleChange}>
+        <select className="profile-input" name="newExperience" onChange={this.handleChange}>
           <option value="Novice">Novice</option>
           <option value="Intermediate">Intermediate</option>
           <option value="Advanced">Advanced</option>
         </select>
-        <button type="button" onClick={(e) => {handleNewExperience(newExperience)}}>Save</button>
-        <button type="button" onClick={() => {handleCancelChange()}}>Cancel</button>
+        <br />
+        <button className="update-button" type="button" onClick={(e) => {handleNewExperience(newExperience)}}>Save</button>
+        <button className="update-button" type="button" onClick={() => {handleCancelChange()}}>Cancel</button>
       </div>
     );
   }

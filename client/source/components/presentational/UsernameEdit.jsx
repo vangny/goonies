@@ -28,13 +28,15 @@ class UsernameEdit extends React.Component {
     console.log(newUsername);
     return (
       <div>
-        OldUsername: {' '}
-        { username }
+        <p className="profile-input">Old Username:
         <br />
-        <br />
-        NewUsername: {' '}
-        <input type="text" name="newName" onChange={(e) => this.handleChange(e)} />
-        <button type="button" id="usernameChange" onClick={() => handleNewUsername(newUsername)}>Change Name</button>
+        { username }</p>
+        <p className="profile-input">
+          New Username:
+          <br />
+          <input className="profile-input" type="text" name="newName" onChange={(e) => this.handleChange(e)} />
+        </p>
+        <a className="action-link" id="usernameChange" onClick={() => handleNewUsername(newUsername)}>Change Name</a>
       </div>
     );
   }
