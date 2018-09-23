@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 // import { Link, Router} from '@reach/router';
 import Dashboard from '../presentational/Dashboard';
 import Login from '../presentational/Login';
-import MapYourRoute from '../presentational/MapYourRoute';
+import Trails from '../presentational/Trails';
 import Journals from '../presentational/Journals';
 import Profile from '../presentational/UserProfile';
 
@@ -52,7 +52,7 @@ class AppContainer extends React.Component {
         return <Journals username={username} />;
       }
       if (view === 'trails') {
-        return <MapYourRoute />;
+        return <Trails />;
       }
       if (view === 'profile') {
         return <Profile username={username}/>;
