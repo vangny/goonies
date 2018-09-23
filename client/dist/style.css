@@ -273,7 +273,7 @@ a {
   transition: 0.3s;
 }
 
- .update-button, .trail-button {
+ .update-button, .trail-button, .start-trail-button {
   font-size: 1em;
   color: white;
   font-weight: 700;
@@ -283,6 +283,11 @@ a {
   margin: 1em 0;
   transition: 0.3s;
  }
+
+.start-trail-container {
+  display: flex;
+  justify-content: center;
+}
 
 .login-button, .register-button {
   font-size: 1em;
