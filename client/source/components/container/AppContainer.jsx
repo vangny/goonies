@@ -34,7 +34,7 @@ class AppContainer extends React.Component {
 
 
   getRoutes() {
-    const { username, routes } = this.state;
+    const { username } = this.state;
     axios.get(`/api/routes?username=${username}`)
       .then((newRoutes) => {
         console.log('routes from db: ', newRoutes);
@@ -59,7 +59,7 @@ class AppContainer extends React.Component {
   }
 
   changeView(view, viewData) {
-    this.setState({ 
+    this.setState({
       view,
       viewData,
     }, () => {console.log(view);});
