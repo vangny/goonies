@@ -13,11 +13,17 @@ class RouteHistory extends React.Component {
     this.componentDidMount = this.componentDidMount.bind(this);
     this.hikeDiscard = this.hikeDiscard.bind(this);
     this.addToJournal = this.addToJournal.bind(this);
+    this.setEndTime = this.setEndTime.bind(this);
   }
 
   componentDidMount() {
-    console.log(!!localStorage.getItem('endTime'));
-    this.setState({ saveView: !!localStorage.getItem('endTime'), });
+    this.setEndTime();
+  }
+  
+  setEndTime() {
+    const endTime = !!localStorage.getItem('endTime');
+    console.log('componentDidMount: ', endTime);
+    this.setState({ saveView: endTime });
   }
 
 
@@ -35,8 +41,9 @@ class RouteHistory extends React.Component {
       distanceInMiles: `${trail.length} miles`,
     })
       .then((data) => {
-        console.log('data');
         getRoutes();
+        localStorage.removeItem('endTime');
+        console.log('addToJournal Function: ', localStorage.getItem('endTime'));
         this.setState({ saveView: false });
       })
     localStorage.removeItem('endTime');
@@ -44,7 +51,7 @@ class RouteHistory extends React.Component {
 
   hikeDiscard() {
     if (confirm('All data from this hike will be lost. Are you sure you want to discard this hike?')) {
-      localStorage.setItem('endTime', null);
+      localStorage.removeItem('endTime');
       this.setState({ saveView: false });
     }
     localStorage.setItem('trail', null);
