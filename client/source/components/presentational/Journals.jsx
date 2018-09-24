@@ -39,6 +39,7 @@ class RouteHistory extends React.Component {
         getRoutes();
         this.setState({ saveView: false });
       })
+    localStorage.removeItem('endTime');
   }
 
   hikeDiscard() {
@@ -46,6 +47,7 @@ class RouteHistory extends React.Component {
       localStorage.setItem('endTime', null);
       this.setState({ saveView: false });
     }
+    localStorage.setItem('trail', null);
   }
 
   saveView() {

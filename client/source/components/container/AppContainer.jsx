@@ -15,7 +15,6 @@ class AppContainer extends React.Component {
       loggedIn: false,
       username: '',
       view: 'dash',
-      viewData: null,
       routes: localStorage.getItem('routes'),
     };
     this.transferUserInfo = this.transferUserInfo.bind(this);
@@ -58,15 +57,14 @@ class AppContainer extends React.Component {
     });
   }
 
-
   changeView(view) {
-    this.setState({
+    this.setState({ 
       view,
     }, () => {console.log(view);});
   }
 
   viewHandler() {
-    const { loggedIn, username, view,  } = this.state;
+    const { loggedIn, username, view } = this.state;
     if (loggedIn) {
       const routes = JSON.parse(localStorage.getItem('routes')) || [];
       console.log('routes: ', routes);

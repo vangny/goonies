@@ -35,7 +35,7 @@ class Trails extends React.Component {
 
   getTrail(trail) {
     localStorage.setItem('trail', JSON.stringify(trail));
-    console.log(localStorage.getItem('trail'));
+    console.log('getItem: ', localStorage.getItem('trail'))
     this.toggleViews('trail');
   }
 
@@ -46,7 +46,7 @@ class Trails extends React.Component {
     // }, () => {
     //   this.toggleViews('start');
     // });
-    localStorage.setItem('startTime', startTime)
+    localStorage.setItem('startTime', startTime);
     this.toggleViews('start');
   }
 
