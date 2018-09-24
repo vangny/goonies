@@ -50,8 +50,7 @@ class RouteHistory extends React.Component {
   }
 
   getRoutes() {
-    const { username, vie } = this.props;
-    
+    const { username } = this.props;
     axios.get(`/api/routes?username=${username}`)
     .then((newRoutes) => {
       console.log('routes from db: ', newRoutes);
