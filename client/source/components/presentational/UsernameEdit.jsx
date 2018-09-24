@@ -25,7 +25,7 @@ class UsernameEdit extends React.Component {
   render() {
     const { newUsername } = this.state;
     const { username, handleNewUsername } = this.props;
-    console.log(newUsername);
+    // console.log(newUsername);
     return (
       <div>
         <p className="profile-input">Old Username:

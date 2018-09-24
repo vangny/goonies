@@ -9,9 +9,8 @@ import StartTrail from './StartTrail';
 class Trails extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
       username: localStorage.getItem('username'),
-      view: 'map',
+      view: '',
       trailInfo: {},
       started: '',
       ended: '',
@@ -23,12 +22,16 @@ class Trails extends React.Component {
     this.endHike = this.endHike.bind(this);
   }
 
+  componentWillMount() {
+    if (!localStorage.getItem('trailsView')) {
+      localStorage.setItem('trailsView', 'map');
+    }
+    this.toggleViews(localStorage.getItem('trailsView'));
+  }
+
   getTrail(trail) {
-    this.setState({
-      trailInfo: trail,
-    }, () => {
-      this.toggleViews('trail');
-    });
+    localStorage.setItem('trail', JSON.stringify(trail));
+    this.toggleViews('trail');
   }
 
   startHike() {
@@ -44,6 +47,7 @@ class Trails extends React.Component {
   endHike() {
     const { changeOuterView } = this.props;
     const endTime = new Date().toLocaleString();
+    localStorage.setItem('trailsView', 'map');
     this.setState({
       ended: endTime,
     }, () => {
@@ -56,6 +60,8 @@ class Trails extends React.Component {
   }
 
   toggleViews(view) {
+    localStorage.setItem('trailsView', view)
+    // console.log(`current view logged: ${localStorage.getItem('trailsView')}`);
     this.setState({
       view,
     });
