@@ -121,7 +121,10 @@ const updateExperience = function (experienceOfUser) {
     });
 };
 
-const getRoutes = username => Routes.findAll({ where: { username }});
+const getRoutes = username => Routes.findAll({ 
+  where: { username }, 
+  order: [['updatedAt', 'DESC']],
+});
 
 const createRoute = (route) => {
   console.log('invoking createRoute with this data: ', route);
