@@ -38,7 +38,7 @@ class RouteHistory extends React.Component {
       }],
     };
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.getRoutes = this.getRoutes.bind(this);
+    // this.getRoutes = this.getRoutes.bind(this);
     this.hikeDiscard = this.hikeDiscard.bind(this);
     this.addToJournal = this.addToJournal.bind(this);
   }
@@ -46,22 +46,23 @@ class RouteHistory extends React.Component {
   componentDidMount() {
     const { viewData } = this.props;
     this.setState({ saveView: !!viewData });
-    this.getRoutes();
+    // this.getRoutes();
   }
 
-  getRoutes() {
-    const { username } = this.props;
-    axios.get(`/api/routes?username=${username}`)
-    .then((newRoutes) => {
-      console.log('routes from db: ', newRoutes);
-      this.setState({
-        routes: newRoutes.data,
-      });
-    });
-  }
+  // getRoutes() {
+  //   const { username } = this.props;
+  //   axios.get(`/api/routes?username=${username}`)
+  //   .then((newRoutes) => {
+  //     console.log('routes from db: ', newRoutes);
+  //     this.setState({
+  //       routes: newRoutes.data,
+  //     });
+  //     setMostRecent(newRoutes.data[0]);
+  //   });
+  // }
 
   addToJournal() {
-    const { username, viewData } = this.props;
+    const { username, viewData, getRoutes } = this.props;
     axios.post('/api/routes/', {
       username,
       routeName: viewData.trailInfo.name,
@@ -71,7 +72,7 @@ class RouteHistory extends React.Component {
     })
       .then((data) => {
         console.log('data');
-        this.getRoutes();
+        getRoutes();
         this.setState({ saveView: false });
       })
   }
@@ -114,7 +115,7 @@ class RouteHistory extends React.Component {
   }
 
   render() {
-    const { routes } = this.state;
+    const routes = JSON.parse(localStorage.getItem('routes'))
     return (
       <div className="trail-journal">
         { this.saveView() }
@@ -136,6 +137,7 @@ class RouteHistory extends React.Component {
 RouteHistory.propTypes = {
   username: PropTypes.string.isRequired,
   viewData: PropTypes.shape.isRequired,
+  getRoutes: PropTypes.func.isRequired,
 };
 
 export default RouteHistory;

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 // import { Link, Router} from '@reach/router';
 import Dashboard from '../presentational/Dashboard';
 import Login from '../presentational/Login';
@@ -15,11 +16,14 @@ class AppContainer extends React.Component {
       username: '',
       view: 'dash',
       viewData: null,
+      routes: localStorage.getItem('routes'),
     };
     this.transferUserInfo = this.transferUserInfo.bind(this);
     this.logOut = this.logOut.bind(this);
     this.changeView = this.changeView.bind(this);
     this.viewHandler = this.viewHandler.bind(this);
+    // this.setMostRecent = this.setMostRecent.bind(this);
+    this.getRoutes = this.getRoutes.bind(this);
   }
 
   componentDidMount() {
@@ -29,13 +33,36 @@ class AppContainer extends React.Component {
     });
   }
 
+  // componentWillMount() {
+
+  // }
+
+  getRoutes() {
+    const { username, routes } = this.state;
+    axios.get(`/api/routes?username=${username}`)
+      .then((newRoutes) => {
+        console.log('routes from db: ', newRoutes);
+        localStorage.setItem('routes', JSON.stringify(newRoutes.data));
+        this.setState({
+          // routes: newRoutes.data,
+          routes: JSON.parse(localStorage.getItem('routes')),
+          loggedIn: true,
+        });
+        console.log('getItem: ', JSON.parse(localStorage.getItem('routes')));
+      });
+  }
+
   transferUserInfo(userData) {
-    this.setState({
-      loggedIn: true,
-      username: userData,
-    });
+    // const { routes } = this.state;
     localStorage.setItem('loggedIn', true);
     localStorage.setItem('username', userData);
+    this.setState({
+      // loggedIn: true,
+      username: userData,
+    }, () => {
+      console.log('getting routes...');
+      this.getRoutes();
+    });
   }
 
   changeView(view, viewData) {
@@ -48,11 +75,13 @@ class AppContainer extends React.Component {
   viewHandler() {
     const { loggedIn, username, view, viewData } = this.state;
     if (loggedIn) {
+      const routes = JSON.parse(localStorage.getItem('routes'));
+      console.log('routes: ', routes);
       if (view === 'dash') {
-        return <Dashboard username={username} logOut={this.logOut} handleChange={this.changeView} />;// dashboard
+        return <Dashboard username={username} logOut={this.logOut} handleChange={this.changeView} mostRecentHike={routes[0]} />;
       }
       if (view === 'journal') {
-        return <Journals username={username} viewData={viewData}/>;
+        return <Journals username={username} viewData={viewData} getRoutes={this.getRoutes} routes={routes} />;
       }
       if (view === 'trails') {
         return <Trails changeOuterView={this.changeView} />;
@@ -68,6 +97,10 @@ class AppContainer extends React.Component {
     this.setState({ loggedIn: false });
     localStorage.clear();
   }
+
+  // setMostRecent(savedHike) {
+  //   this.setState({ mostRecentHike: savedHike});
+  // }
 
   render() {
     const { loggedIn } = this.state;
