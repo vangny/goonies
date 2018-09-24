@@ -9,6 +9,7 @@ import StartTrail from './StartTrail';
 class Trails extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
       username: localStorage.getItem('username'),
       view: '',
       trailInfo: {},
@@ -26,6 +27,9 @@ class Trails extends React.Component {
     if (!localStorage.getItem('trailsView')) {
       localStorage.setItem('trailsView', 'map');
     }
+    this.setState({
+      
+    })
     this.toggleViews(localStorage.getItem('trailsView'));
   }
 
