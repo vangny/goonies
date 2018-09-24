@@ -15,14 +15,7 @@ self.addEventListener('install', event => {
     caches.open('app-offline')
       .then(cache => cache.addAll(urlsToCache))
   );
-
-  // console.log('installing current-weather');
-  // event.waitUntil(
-  //   caches.open('cuirrent-weather')
-  //     .then(cache => fetch('/api/weathercurrent')
-  //     .then(response => cache.put('/api/weathercurrent', response)))
-  // );
-})
+});
 
 self.addEventListener('activate', event => {
   console.log('ready to listen boss');
@@ -31,7 +24,7 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request).then(function(response) {
-      return fetch(event.request) || response;
+      return response || fetch(event.request);
     })
   );
 });
