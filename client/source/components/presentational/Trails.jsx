@@ -11,10 +11,10 @@ class Trails extends React.Component {
     super(props);
     this.state = {
       username: localStorage.getItem('username'),
-      view: 'map',
+      view: '',
       trailInfo: {},
-      started: '',
-      ended: '',
+      // started: '',
+      // ended: '',
     };
     this.toggleViews = this.toggleViews.bind(this);
     this.viewHandler = this.viewHandler.bind(this);
@@ -23,39 +23,54 @@ class Trails extends React.Component {
     this.endHike = this.endHike.bind(this);
   }
 
-  getTrail(trail) {
+  componentWillMount() {
+    if (!localStorage.getItem('trailsView')) {
+      localStorage.setItem('trailsView', 'map');
+    }
     this.setState({
-      trailInfo: trail,
-    }, () => {
-      this.toggleViews('trail');
-    });
+      
+    })
+    this.toggleViews(localStorage.getItem('trailsView'));
+  }
+
+  getTrail(trail) {
+    localStorage.setItem('trail', JSON.stringify(trail));
+    console.log(localStorage.getItem('trail'));
+    this.toggleViews('trail');
   }
 
   startHike() {
     const startTime = new Date().toLocaleString();
-    this.setState({
-      started: startTime,
-    }, () => {
-      this.toggleViews('start');
-    });
+    // this.setState({
+    //   started: startTime,
+    // }, () => {
+    //   this.toggleViews('start');
+    // });
+    localStorage.setItem('startTime', startTime)
+    this.toggleViews('start');
   }
 
 
   endHike() {
     const { changeOuterView } = this.props;
     const endTime = new Date().toLocaleString();
-    this.setState({
-      ended: endTime,
-    }, () => {
-      const { trailInfo, started, ended } = this.state;
-      const routeInfo = { trailInfo, started, ended };
-      //super toggle view
+    localStorage.setItem('trailsView', 'map');
+    localStorage.setItem('endTime', endTime);
+    changeOuterView('journal');
+    // this.setState({
+    //   ended: endTime,
+    // }, () => {
+    //   const { trailInfo, started, ended } = this.state;
+    //   const routeInfo = { trailInfo, started, ended };
+    //   //super toggle view
       
-      changeOuterView('journal', routeInfo);
-    });
+    //   changeOuterView('journal', routeInfo);
+    // });
   }
 
   toggleViews(view) {
+    localStorage.setItem('trailsView', view)
+    // console.log(`current view logged: ${localStorage.getItem('trailsView')}`);
     this.setState({
       view,
     });

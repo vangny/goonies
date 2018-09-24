@@ -1,5 +1,4 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
 const path = require('path');
 
 const SRC_DIR = path.join(__dirname, './client/source');
@@ -38,8 +37,6 @@ module.exports = {
       template: `${SRC_DIR}/index.html`,
       filename: `${DIST_DIR}/index.html`,
     }),
-    new CompressionPlugin({
-      algorithm: 'gzip',
-    }),
+  
   ],
 };

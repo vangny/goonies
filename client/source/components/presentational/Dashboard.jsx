@@ -7,7 +7,7 @@ import ParkInfo from './ParkInfo';
 import Weather from './Weather';
 
 
-const Dashboard = ({ mostRecentHike }) => (
+const Dashboard = ({ mostRecentHike, handleChange }) => (
     <div className="dashboard">
       <div>
         <Weather />
@@ -50,13 +50,13 @@ const Dashboard = ({ mostRecentHike }) => (
           }
         </p>
       </div>
-      <a className="action-link" onClick={() => props.handleChange('trails')}>Choose A Trail</a>
+      <a className="action-link" onClick={() => handleChange('trails')}>Choose A Trail</a>
     </div>
 );
 
 Dashboard.propTypes = {
   mostRecentHike: PropTypes.objectOf(PropTypes.string).isRequired,
-  // getRoutes: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default Dashboard;

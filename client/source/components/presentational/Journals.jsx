@@ -16,19 +16,23 @@ class RouteHistory extends React.Component {
   }
 
   componentDidMount() {
-    const { viewData } = this.props;
-    this.setState({ saveView: !!viewData });
+    console.log(!!localStorage.getItem('endTime'));
+    this.setState({ saveView: !!localStorage.getItem('endTime'), });
   }
 
 
   addToJournal() {
     const { username, viewData, getRoutes } = this.props;
+    const trail = JSON.parse(localStorage.getItem('trail'));
+    const started = localStorage.getItem('startTime');
+    const ended = localStorage.getItem('endTime');
+
     axios.post('/api/routes/', {
       username,
-      routeName: viewData.trailInfo.name,
-      start: viewData.started,
-      end: viewData.ended,
-      distanceInMiles: `${viewData.trailInfo.length} miles`,
+      routeName: trail.name,
+      start: started,
+      end: ended,
+      distanceInMiles: `${trail.length} miles`,
     })
       .then((data) => {
         console.log('data');
@@ -39,48 +43,52 @@ class RouteHistory extends React.Component {
 
   hikeDiscard() {
     if (confirm('All data from this hike will be lost. Are you sure you want to discard this hike?')) {
+      localStorage.setItem('endTime', null);
       this.setState({ saveView: false });
     }
   }
 
   saveView() {
-    const { viewData } = this.props;
     const { saveView } = this.state;
+    const trail = JSON.parse(localStorage.getItem('trail'));
+    const started = localStorage.getItem('startTime');
+    const ended = localStorage.getItem('endTime');
+
     return (saveView
       ? (
-        <div className="recentHikeData">
-          <div className="hike-data-container">
-          <p>Most Recent Hike:
-          <br />
-          {viewData.trailInfo.name}
-          </p>
-          <p>
-          Started:
-          <br />
-          {viewData.started}
-          </p>
-          Ended:
-          <br />
-          {viewData.ended}
-          <p>
-          Distance:
-          <br />
-          {viewData.trailInfo.length}
-          {' miles'}
-          </p>
+          <div className="recentHikeData">
+            <div className="hike-data-container">
+              <p>Most Recent Hike:
+              <br />
+              {trail.name}
+              </p>
+              <p>
+              Started:
+              <br />
+              {started}
+              </p>
+              Ended:
+              <br />
+              {ended}
+              <p>
+              Distance:
+              <br />
+              {trail.length}
+              {' miles'}
+              </p>
+            </div>
+            <div className="save-or-discard-container">
+            <button type="button" onClick={this.addToJournal}>Save</button>
+            <button type="button" onClick={this.hikeDiscard}>Discard</button>
+            </div>
           </div>
-          <div className="save-or-discard-container">
-          <button type="button" onClick={this.addToJournal}>Save</button>
-          <button type="button" onClick={this.hikeDiscard}>Discard</button>
-          </div>
-        </div>
       )
       : null
     );
   }
 
   render() {
-    const routes = JSON.parse(localStorage.getItem('routes')) || [];
+    const routes = JSON.parse(localStorage.getItem('routes')) || [];
     return (
       <div className="trail-journal">
         { this.saveView() }
@@ -99,10 +107,10 @@ class RouteHistory extends React.Component {
   }
 }
 
-RouteHistory.propTypes = {
-  username: PropTypes.string.isRequired,
-  viewData: PropTypes.shape.isRequired,
-  getRoutes: PropTypes.func.isRequired,
-};
+// RouteHistory.propTypes = {
+//   username: PropTypes.string.isRequired,
+//   viewData: PropTypes.shape.isRequired,
+//   getRoutes: PropTypes.func.isRequired,
+// };
 
 export default RouteHistory;
