@@ -49,25 +49,30 @@ class RouteHistory extends React.Component {
     return (saveView
       ? (
         <div className="recentHikeData">
-          Most Recent Hike:
+          <div className="hike-data-container">
+          <p>Most Recent Hike:
           <br />
           {viewData.trailInfo.name}
-          <br />
+          </p>
+          <p>
           Started:
           <br />
           {viewData.started}
-          <br />
+          </p>
           Ended:
           <br />
           {viewData.ended}
-          <br />
+          <p>
           Distance:
           <br />
           {viewData.trailInfo.length}
           {' miles'}
-          <br />
+          </p>
+          </div>
+          <div className="save-or-discard-container">
           <button type="button" onClick={this.addToJournal}>Save</button>
           <button type="button" onClick={this.hikeDiscard}>Discard</button>
+          </div>
         </div>
       )
       : null
@@ -75,7 +80,7 @@ class RouteHistory extends React.Component {
   }
 
   render() {
-    const routes = JSON.parse(localStorage.getItem('routes'))
+    const routes = JSON.parse(localStorage.getItem('routes')) || [];
     return (
       <div className="trail-journal">
         { this.saveView() }
