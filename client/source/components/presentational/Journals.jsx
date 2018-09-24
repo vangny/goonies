@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-// import RouteContainer from './RouteContainer';
 import Route from './Route';
 
 class RouteHistory extends React.Component {
@@ -9,6 +8,7 @@ class RouteHistory extends React.Component {
     super(props);
 
     this.state = {
+      saveView: false,
       routes: [{
         name: 'Half Dome',
         type: 'Featured Hike',
@@ -39,41 +39,85 @@ class RouteHistory extends React.Component {
     };
     this.componentDidMount = this.componentDidMount.bind(this);
     this.getRoutes = this.getRoutes.bind(this);
+    this.hikeDiscard = this.hikeDiscard.bind(this);
+    this.addToJournal = this.addToJournal.bind(this);
   }
 
   componentDidMount() {
-    const { username } = this.props;
-    console.log('username: ', username);
+    const { viewData } = this.props;
+    this.setState({ saveView: !!viewData });
+    this.getRoutes();
   }
 
   getRoutes() {
     const { username } = this.props;
     axios.get(`/api/routes?username=${username}`)
-      .then((newRoutes) => {
-        console.log('Routes returned from database!')
-        this.setState({
-          routes: newRoutes.data,
-        });
+    .then((newRoutes) => {
+      console.log('routes from db: ', newRoutes);
+      this.setState({
+        routes: newRoutes.data,
       });
+    });
   }
 
-  // console.log(this.state.routes) delete this. just here to pass tests.
   addToJournal() {
-    const { username } = this.props;
-    // placeholder return statement to avoid getting flagged
-    axios.patch(`/api/routes?username=${username}`)
-      .then((routes) => {
-        this.setState({
-          routes: routes.data,
-        });
-      });
+    const { username, viewData } = this.props;
+    axios.post('/api/routes/', {
+      username,
+      routeName: viewData.trailInfo.name,
+      start: viewData.started,
+      end: viewData.ended,
+      distanceInMiles: `${viewData.trailInfo.length} miles`,
+    })
+      .then((data) => {
+        console.log('data');
+        this.getRoutes();
+        this.setState({ saveView: false });
+      })
+  }
+
+  hikeDiscard() {
+    if (confirm('All data from this hike will be lost. Are you sure you want to discard this hike?')) {
+      this.setState({ saveView: false });
+    }
+  }
+
+  saveView() {
+    const { viewData } = this.props;
+    const { saveView } = this.state;
+    return (saveView
+      ? (
+        <div className="recentHikeData">
+          Most Recent Hike:
+          <br />
+          {viewData.trailInfo.name}
+          <br />
+          Started:
+          <br />
+          {viewData.started}
+          <br />
+          Ended:
+          <br />
+          {viewData.ended}
+          <br />
+          Distance:
+          <br />
+          {viewData.trailInfo.length}
+          {' miles'}
+          <br />
+          <button type="button" onClick={this.addToJournal}>Save</button>
+          <button type="button" onClick={this.hikeDiscard}>Discard</button>
+        </div>
+      )
+      : null
+    );
   }
 
   render() {
     const { routes } = this.state;
-    // console.log(routes);
     return (
       <div className="trail-journal">
+        { this.saveView() }
         <div className="journal-title">
           <h1>Your Trails</h1>
         </div>
@@ -91,6 +135,7 @@ class RouteHistory extends React.Component {
 
 RouteHistory.propTypes = {
   username: PropTypes.string.isRequired,
+  viewData: PropTypes.shape.isRequired,
 };
 
 export default RouteHistory;

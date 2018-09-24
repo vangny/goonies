@@ -93,24 +93,16 @@ app.put('/api/users/update/exp/:username/:experience', (req, res) => {
 app.get('/api/routes', (req, res) => {
   const { username } = req.query;
   db.getRoutes(username)
-    .then(routes => res.status(200).send(routes))
+    .then(routes => {
+      console.log('Routes returned from get request: ', routes)
+      res.status(200).send(routes)
+    })
     .catch(err => console.log(err));
 });
 
-app.patch('/api/routes', (req, res) => {
-  const { route, username } = req.body.data;
-  db.createRoute(route, username)
-    .then((created) => {
-      if (created) {
-        res.status(200);
-        // console.log('Successfully stored');
-        res.send('Successfully stored');
-      } else {
-        res.status(200);
-        // console.log('Successfully inserted');
-        res.send('Successfully inserted');
-      }
-    });
+app.post('/api/routes', (req, res) => {
+  db.createRoute(req.body);
+  res.send('Successfully returning');
 });
 
 app.delete('/api/routes', (req, res) => {

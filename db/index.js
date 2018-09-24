@@ -22,10 +22,11 @@ const User = sequelize.define('user', {
 const Routes = sequelize.define('route', {
   username: { type: Sequelize.STRING },
   routeName: { type: Sequelize.STRING },
-  date: { type: Sequelize.STRING },
-  distanceInMiles: { type: Sequelize.INTEGER },
-  timeToCompleteInHours: { type: Sequelize.INTEGER },
-  averageSpeedMPH: { type: Sequelize.INTEGER },
+  start: { type: Sequelize.STRING },
+  end: { type: Sequelize.STRING },
+  distanceInMiles: { type: Sequelize.STRING },
+
+
 });
 
 User.hasMany(Routes);
@@ -120,27 +121,17 @@ const updateExperience = function (experienceOfUser) {
     });
 };
 
-const getRoutes = username => Routes.find({ username });
+const getRoutes = username => Routes.findAll({ where: { username }});
 
 const createRoute = (route) => {
-  const {
-    id,
-    username,
-    routeName,
-    date,
-    distanceInMiles,
-    timeToCompleteInHours,
-    averageSpeedMPH,
-  } = route;
-  return Routes.upsert({
-    id,
-    username,
-    routeName,
-    date,
-    distanceInMiles,
-    timeToCompleteInHours,
-    averageSpeedMPH,
-  });
+  console.log('invoking createRoute with this data: ', route);
+  const { username, routeName, start, end, distanceInMiles } = route;
+  Routes.upsert({
+    username, routeName, start, end, distanceInMiles,
+  })
+    .then((data) => {
+      console.log('successfully entered!', data);
+    })
 };
 
 const deleteRoute = route => Routes.destroy({

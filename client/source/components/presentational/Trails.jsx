@@ -10,7 +10,7 @@ class Trails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      username: localStorage.getItem('username'),
       view: 'map',
       trailInfo: {},
       started: '',
@@ -32,41 +32,46 @@ class Trails extends React.Component {
   }
 
   startHike() {
-    const start = new Date().toLocaleString();
+    const startTime = new Date().toLocaleString();
     this.setState({
-      started: start,
+      started: startTime,
     }, () => {
       this.toggleViews('start');
     });
   }
 
+
   endHike() {
     const { changeOuterView } = this.props;
-    const end = new Date().toLocaleString();
+    const endTime = new Date().toLocaleString();
     this.setState({
-      ended: end,
+      ended: endTime,
     }, () => {
+      const { trailInfo, started, ended } = this.state;
+      const routeInfo = { trailInfo, started, ended };
       //super toggle view
-      changeOuterView('journal');
+      
+      changeOuterView('journal', routeInfo);
     });
   }
 
   toggleViews(view) {
     this.setState({
       view,
-      });
+    });
   }
 
   viewHandler() {
     const { view, trailInfo } = this.state;
     if (view === 'map') {
-      return <Map getTrail={this.getTrail} />
-    } else if (view === 'trail') {
-      return <SelectTrail toggleViews={this.toggleViews} trailInfo={trailInfo} startHike={this.startHike} />
-    } else if (view === 'start') {
-      return <StartTrail endHike={this.endHike} />
+      return <Map getTrail={this.getTrail} />;
     }
-
+    if (view === 'trail') {
+      return <SelectTrail toggleViews={this.toggleViews} trailInfo={trailInfo} startHike={this.startHike} />;
+    }
+    if (view === 'start') {
+      return <StartTrail endHike={this.endHike} />;
+    }
     return;
   }
 

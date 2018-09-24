@@ -14,6 +14,7 @@ class AppContainer extends React.Component {
       loggedIn: false,
       username: '',
       view: 'dash',
+      viewData: null,
     };
     this.transferUserInfo = this.transferUserInfo.bind(this);
     this.logOut = this.logOut.bind(this);
@@ -37,18 +38,21 @@ class AppContainer extends React.Component {
     localStorage.setItem('username', userData);
   }
 
-  changeView(view) {
-    this.setState({ view });
+  changeView(view, viewData) {
+    this.setState({ 
+      view,
+      viewData,
+    }, () => {console.log(view);});
   }
 
   viewHandler() {
-    const { loggedIn, username, view } = this.state;
+    const { loggedIn, username, view, viewData } = this.state;
     if (loggedIn) {
       if (view === 'dash') {
         return <Dashboard username={username} logOut={this.logOut} handleChange={this.changeView} />;// dashboard
       }
       if (view === 'journal') {
-        return <Journals username={username} />;
+        return <Journals username={username} viewData={viewData}/>;
       }
       if (view === 'trails') {
         return <Trails changeOuterView={this.changeView} />;
