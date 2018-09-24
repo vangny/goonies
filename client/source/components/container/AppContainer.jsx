@@ -58,15 +58,14 @@ class AppContainer extends React.Component {
     });
   }
 
-  changeView(view, viewData) {
+  changeView(view) {
     this.setState({ 
       view,
-      viewData,
     }, () => {console.log(view);});
   }
 
   viewHandler() {
-    const { loggedIn, username, view, viewData } = this.state;
+    const { loggedIn, username, view,  } = this.state;
     if (loggedIn) {
       const routes = JSON.parse(localStorage.getItem('routes')) || [];
       console.log('routes: ', routes);
@@ -74,7 +73,7 @@ class AppContainer extends React.Component {
         return <Dashboard username={username} logOut={this.logOut} handleChange={this.changeView} mostRecentHike={routes[0]} />;
       }
       if (view === 'journal') {
-        return <Journals username={username} viewData={viewData} getRoutes={this.getRoutes} routes={routes} />;
+        return <Journals username={username} getRoutes={this.getRoutes} routes={routes} />;
       }
       if (view === 'trails') {
         return <Trails changeOuterView={this.changeView} />;

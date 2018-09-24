@@ -13,8 +13,8 @@ class Trails extends React.Component {
       username: localStorage.getItem('username'),
       view: '',
       trailInfo: {},
-      started: '',
-      ended: '',
+      // started: '',
+      // ended: '',
     };
     this.toggleViews = this.toggleViews.bind(this);
     this.viewHandler = this.viewHandler.bind(this);
@@ -35,16 +35,19 @@ class Trails extends React.Component {
 
   getTrail(trail) {
     localStorage.setItem('trail', JSON.stringify(trail));
+    console.log(localStorage.getItem('trail'));
     this.toggleViews('trail');
   }
 
   startHike() {
     const startTime = new Date().toLocaleString();
-    this.setState({
-      started: startTime,
-    }, () => {
-      this.toggleViews('start');
-    });
+    // this.setState({
+    //   started: startTime,
+    // }, () => {
+    //   this.toggleViews('start');
+    // });
+    localStorage.setItem('startTime', startTime)
+    this.toggleViews('start');
   }
 
 
@@ -52,15 +55,17 @@ class Trails extends React.Component {
     const { changeOuterView } = this.props;
     const endTime = new Date().toLocaleString();
     localStorage.setItem('trailsView', 'map');
-    this.setState({
-      ended: endTime,
-    }, () => {
-      const { trailInfo, started, ended } = this.state;
-      const routeInfo = { trailInfo, started, ended };
-      //super toggle view
+    localStorage.setItem('endTime', endTime);
+    changeOuterView('journal');
+    // this.setState({
+    //   ended: endTime,
+    // }, () => {
+    //   const { trailInfo, started, ended } = this.state;
+    //   const routeInfo = { trailInfo, started, ended };
+    //   //super toggle view
       
-      changeOuterView('journal', routeInfo);
-    });
+    //   changeOuterView('journal', routeInfo);
+    // });
   }
 
   toggleViews(view) {
