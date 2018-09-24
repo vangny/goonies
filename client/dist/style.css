@@ -165,19 +165,9 @@ a {
   padding-bottom: 30px;
 }
 
-/*.map {
-  margin: 1em auto;
-}*/
-
 #start {
   margin-top: 40px;
 }
-
-/*.forecast {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}*/
 
 .route,
 .user-profile,
@@ -236,7 +226,6 @@ a {
   text-align: center;
   width: 800px;
   height: 500px;
-  /*overflow: scroll;*/
 }
 
 .user-profile {
