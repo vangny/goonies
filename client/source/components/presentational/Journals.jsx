@@ -18,6 +18,10 @@ class RouteHistory extends React.Component {
   componentDidMount() {
     const { viewData } = this.props;
     this.setState({ saveView: !!viewData });
+<<<<<<< HEAD
+=======
+    this.getRoutes();
+>>>>>>> Fix rebase conflicts
   }
 
 
