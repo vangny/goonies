@@ -75,7 +75,7 @@ class RouteHistory extends React.Component {
   }
 
   render() {
-    const routes = JSON.parse(localStorage.getItem('routes'))
+    const routes = JSON.parse(localStorage.getItem('routes')) || [];
     return (
       <div className="trail-journal">
         { this.saveView() }

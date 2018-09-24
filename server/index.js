@@ -105,21 +105,6 @@ app.post('/api/routes', (req, res) => {
   res.send('Successfully returning');
 });
 
-app.delete('/api/routes', (req, res) => {
-  db.deleteRoute(req.query)
-    .then((rowsDestroyed) => {
-      if (rowsDestroyed === 1) {
-        res.status(204);
-        console.log('Successfully stored');
-        res.send('Successfully deleted');
-      } else if (rowsDestroyed === 0) {
-        res.status(404);
-        res.send('That record was not found');
-      }
-    })
-    .catch(err => console.log(err));
-});
-
 // ///// TRAILS ///// //
 app.get('/api/trails', (req, res) => {
   trails.getNearestTrails()

@@ -118,8 +118,8 @@ class UserProfile extends React.Component {
 
   handleNewUsername(newUsername) {
     const username = localStorage.getItem('username')
-    console.log('old username: ', username);
-    console.log('new username: ', newUsername);
+    // console.log('old username: ', username);
+    // console.log('new username: ', newUsername);
     axios.put(`/api/users/update/${username}/${newUsername}`)
       .then((res) => {
         if (res.data === 'Username Updated') {
