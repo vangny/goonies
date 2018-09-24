@@ -16,19 +16,23 @@ class RouteHistory extends React.Component {
   }
 
   componentDidMount() {
-    const { viewData } = this.props;
-    this.setState({ saveView: !!viewData });
+    console.log(!!localStorage.getItem('endTime'));
+    this.setState({ saveView: !!localStorage.getItem('endTime'), });
   }
 
 
   addToJournal() {
     const { username, viewData, getRoutes } = this.props;
+    const trail = JSON.parse(localStorage.getItem('trail'));
+    const started = localStorage.getItem('startTime');
+    const ended = localStorage.getItem('endTime');
+
     axios.post('/api/routes/', {
       username,
-      routeName: viewData.trailInfo.name,
-      start: viewData.started,
-      end: viewData.ended,
-      distanceInMiles: `${viewData.trailInfo.length} miles`,
+      routeName: trail.name,
+      start: started,
+      end: ended,
+      distanceInMiles: `${trail.length} miles`,
     })
       .then((data) => {
         console.log('data');
@@ -39,31 +43,35 @@ class RouteHistory extends React.Component {
 
   hikeDiscard() {
     if (confirm('All data from this hike will be lost. Are you sure you want to discard this hike?')) {
+      localStorage.setItem('endTime', null);
       this.setState({ saveView: false });
     }
   }
 
   saveView() {
-    const { viewData } = this.props;
     const { saveView } = this.state;
+    const trail = JSON.parse(localStorage.getItem('trail'));
+    const started = localStorage.getItem('startTime');
+    const ended = localStorage.getItem('endTime');
+
     return (saveView
       ? (
         <div className="recentHikeData">
           Most Recent Hike:
           <br />
-          {viewData.trailInfo.name}
+          {trail.name}
           <br />
           Started:
           <br />
-          {viewData.started}
+          {started}
           <br />
           Ended:
           <br />
-          {viewData.ended}
+          {ended}
           <br />
           Distance:
           <br />
-          {viewData.trailInfo.length}
+          {trail.length}
           {' miles'}
           <br />
           <button type="button" onClick={this.addToJournal}>Save</button>
@@ -94,10 +102,10 @@ class RouteHistory extends React.Component {
   }
 }
 
-RouteHistory.propTypes = {
-  username: PropTypes.string.isRequired,
-  viewData: PropTypes.shape.isRequired,
-  getRoutes: PropTypes.func.isRequired,
-};
+// RouteHistory.propTypes = {
+//   username: PropTypes.string.isRequired,
+//   viewData: PropTypes.shape.isRequired,
+//   getRoutes: PropTypes.func.isRequired,
+// };
 
 export default RouteHistory;
