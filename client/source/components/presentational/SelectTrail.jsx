@@ -48,15 +48,6 @@ class SelectTrail extends React.Component {
   }
 }
 
-
-// const SelectTrail = ({ toggleViews, trail, startHike }) => {
-//   const startHandler = (event) => {
-//     startHike();
-//   };
-
-//   
-// };
-
 SelectTrail.propTypes = {
   toggleViews: PropTypes.func.isRequired,
 };

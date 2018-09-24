@@ -35,6 +35,7 @@ class Trails extends React.Component {
 
   getTrail(trail) {
     localStorage.setItem('trail', JSON.stringify(trail));
+    console.log(localStorage.getItem('trail'));
     this.toggleViews('trail');
   }
 
