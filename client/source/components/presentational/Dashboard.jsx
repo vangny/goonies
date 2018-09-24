@@ -19,19 +19,35 @@ const Dashboard = ({ mostRecentHike }) => (
       <div className="recent">
         <p>
           Route:
-          {mostRecentHike.routeName}
+          {
+            mostRecentHike ? 
+              mostRecentHike.routeName
+              : 'N/A'
+          }
         </p>
         <p>
           Distance:
-          {mostRecentHike.distanceInMiles}
+          {
+            mostRecentHike ?  
+              mostRecentHike.distanceInMiles
+              : 'N/A'
+          }
         </p>
         <p>
-          Start: 
-          {mostRecentHike.start}
+          Start:
+          {
+            mostRecentHike ?
+              mostRecentHike.start
+              : 'N/A'
+        }
         </p>
         <p>
-          End: 
-          {mostRecentHike.end}
+          End:
+          {
+            mostRecentHike ?
+              mostRecentHike.end
+              : 'N/A'
+          }
         </p>
       </div>
       <a className="action-link" onClick={() => props.handleChange('trails')}>Choose A Trail</a>
