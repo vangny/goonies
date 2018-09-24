@@ -213,13 +213,10 @@ a {
 }
 
 .map {
-  /*background: #fafbfb;*/
   padding: 100px;
-  /*border-radius: 5px;*/
   margin: 1em auto;
   width: auto;
   height: 600px;
-  /*box-shadow: 0 10px 50px rgba(188, 197, 216, 1);*/
 }
 
 #map-container {
@@ -263,13 +260,6 @@ a {
   margin-top: 200px;
   text-align: center;
 }
-
-/*.forecast:hover,
-.alerts:hover,
-.current-weather:hover,
-.recent:hover {
-  box-shadow: 0 10px 50px rgba(188, 197, 216, 1);
-}*/
 
 .profile-input, .login-input, .register-input {
   padding: 12px 20px;
