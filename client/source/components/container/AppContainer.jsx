@@ -101,12 +101,12 @@ class AppContainer extends React.Component {
               <div className="sidebar">
                 <nav>
                   <div>
-                     <span className="menu-logo" id="logo" onClick={() => this.changeView('dash')}>BackPacker</span>
-                  <span className="menu" id="dash" onClick={() => this.changeView('dash')}>Dashboard</span>
-                  <span className="menu" id="journals" onClick={() => this.changeView('journal')}>Trail Journal</span>
-                  <span className="menu" id="trailInfo" onClick={() => this.changeView('trails')}>Trails</span>
-                  <span className="menu" id="profile" onClick={() => this.changeView('profile')}>Profile</span>
-                  <span className="menu" id="logOut" onClick={this.logOut}>Logout</span>
+                    <span className="menu-logo" id="logo" onClick={() => this.changeView('dash')}>BackPacker</span>
+                    <span className="menu" id="dash" onClick={() => this.changeView('dash')}>Dashboard</span>
+                    <span className="menu" id="journals" onClick={() => this.changeView('journal')}>Trail Journal</span>
+                    <span className="menu" id="trailInfo" onClick={() => this.changeView('trails')}>Trails</span>
+                    <span className="menu" id="profile" onClick={() => this.changeView('profile')}>Profile</span>
+                    <span className="menu" id="logOut" onClick={this.logOut}>Logout</span>
                   </div>
                 </nav>
               </div>
