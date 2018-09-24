@@ -9,36 +9,8 @@ class RouteHistory extends React.Component {
 
     this.state = {
       saveView: false,
-      routes: [{
-        name: 'Half Dome',
-        type: 'Featured Hike',
-        difficulty: 'black',
-        location: 'Yosemite Valley, California',
-        length: 14.7,
-        start: 'June 10, 10:05 AM',
-        end: 'June 10, 3:35 PM',
-      },
-      {
-        name: 'Devil\'s Drop',
-        type: 'Featured Hike',
-        difficulty: 'black',
-        location: 'Yosemite Valley, California',
-        length: 15.2,
-        start: 'June 5, 8:05 AM',
-        end: 'June 5, 2:21 PM',
-      },
-      {
-        name: 'Stairway To Heaven',
-        type: 'Featured Hike',
-        difficulty: 'black',
-        location: 'Yosemite Valley, California',
-        length: 12,
-        start: 'May 2, 9:30 AM',
-        end: 'May 2, 1:56 PM',
-      }],
     };
     this.componentDidMount = this.componentDidMount.bind(this);
-    // this.getRoutes = this.getRoutes.bind(this);
     this.hikeDiscard = this.hikeDiscard.bind(this);
     this.addToJournal = this.addToJournal.bind(this);
   }
@@ -46,20 +18,8 @@ class RouteHistory extends React.Component {
   componentDidMount() {
     const { viewData } = this.props;
     this.setState({ saveView: !!viewData });
-    // this.getRoutes();
   }
 
-  // getRoutes() {
-  //   const { username } = this.props;
-  //   axios.get(`/api/routes?username=${username}`)
-  //   .then((newRoutes) => {
-  //     console.log('routes from db: ', newRoutes);
-  //     this.setState({
-  //       routes: newRoutes.data,
-  //     });
-  //     setMostRecent(newRoutes.data[0]);
-  //   });
-  // }
 
   addToJournal() {
     const { username, viewData, getRoutes } = this.props;
