@@ -18,10 +18,6 @@ class RouteHistory extends React.Component {
   componentDidMount() {
     const { viewData } = this.props;
     this.setState({ saveView: !!viewData });
-<<<<<<< HEAD
-=======
-    this.getRoutes();
->>>>>>> Fix rebase conflicts
   }
 
 
@@ -79,7 +75,7 @@ class RouteHistory extends React.Component {
   }
 
   render() {
-    const routes = JSON.parse(localStorage.getItem('routes'))
+    const routes = JSON.parse(localStorage.getItem('routes')) || [];
     return (
       <div className="trail-journal">
         { this.saveView() }
